@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen>  {
         splashIconSize: 200,
         backgroundColor: const Color.fromARGB(255, 0, 74, 134),
         pageTransitionType: PageTransitionType.rightToLeft,
-        splashTransition: SplashTransition.rotationTransition,
+        splashTransition: SplashTransition.scaleTransition,
         splash: Image.asset("assets/images/logo.png"),
         nextScreen: const NewScreen(),
         duration: 2000,
