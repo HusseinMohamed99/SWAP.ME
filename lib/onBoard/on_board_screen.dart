@@ -86,8 +86,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               isLast ? '' : 'تخطي',
               style: const TextStyle(
                 color: Color.fromARGB(255, 0, 74, 134),
-                fontSize: 18,
+                fontSize: 16,
                 fontFamily: 'FFShamelFamily',
+                fontWeight: FontWeight.bold,
               ),
 
               // style: TextStyle(
