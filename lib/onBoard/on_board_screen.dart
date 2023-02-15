@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:swap_me/Cache_helper/cache_helper.dart';
 
@@ -85,10 +84,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             },
             child: Text(
               isLast ? '' : 'تخطي',
-              style: GoogleFonts.roboto(
-                color: const Color.fromARGB(255, 0, 74, 134),
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 74, 134),
+                fontSize: 18,
+                fontFamily: 'FFShamelFamily',
               ),
 
               // style: TextStyle(
@@ -152,11 +151,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           backgroundColor: const Color.fromARGB(255, 0, 74, 134),
                         ),
                         onPressed: () {},
-                        child: Text(
+                      child: const Text(
                           'ابدأ',
-                          style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
+                          style: TextStyle(
+                            fontFamily: 'FFShamelFamily',
+                            fontSize: 18,
                           ),
                         ),
                       ),
@@ -167,13 +166,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(horizontal: 40),
                         ),
-                        child: Text(
+                        child: const Text(
                           'التالي',
-                          style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 0, 74, 134),
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: TextStyle(
+                              fontFamily: 'FFShamelFamily',
+                              color: Color.fromARGB(255, 0, 74, 134),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
 
                           // style: TextStyle(
 
@@ -228,17 +227,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 Text(
                   model.title,
-                  style: GoogleFonts.roboto(
-                    fontSize: 25,
-                    color: const Color.fromARGB(255, 152, 150, 150),
+                  style: const TextStyle(
+                    fontFamily: 'FFShamelFamily',
+                    fontSize: 19,
+                    color: Color.fromARGB(255, 152, 150, 150),
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 Text(
                   model.body ?? '',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.lobster(
-                    fontSize: 25,
-                    color: const Color.fromARGB(255, 152, 150, 150),
+                  style: const TextStyle(
+                    fontFamily: 'FFShamelFamily',
+                    fontSize: 19,
+                    fontWeight: FontWeight.normal,
+                    color: Color.fromARGB(255, 152, 150, 150),
                   ),
                 ),
               ],

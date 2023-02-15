@@ -100,3 +100,8 @@ flutter:
     - assets/images/2x/
     - assets/images/3x/
 
+  fonts:
+    - family: FFShamelFamily
+      fonts:
+        - asset: assets/fonts/ArbFONTS-FFShamelFamily-SansOneBold.ttf
+        - asset: assets/fonts/ArbFONTS-FFShamelFamily-SansOneBook.ttf
