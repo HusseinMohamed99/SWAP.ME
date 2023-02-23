@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:swap_me/Cache_helper/cache_helper.dart';
+import 'package:swap_me/shared/network/cache_helper.dart';
 
 class BoardingModel {
   final String image;

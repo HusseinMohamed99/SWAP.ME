@@ -1,7 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:swap_me/Splash/splash.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:swap_me/screens/Splash/splash.dart';
 
 
 class SplashScreen extends StatefulWidget {

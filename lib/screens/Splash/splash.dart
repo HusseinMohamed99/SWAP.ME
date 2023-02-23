@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:swap_me/onBoard/on_board_screen.dart';
+import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 
 class NewScreen extends StatefulWidget {
   static const routeName = "NewScreen";
