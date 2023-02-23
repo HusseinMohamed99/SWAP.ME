@@ -23,8 +23,7 @@ class DefaultTextFormField extends StatelessWidget {
       this.isClickable,
       this.isPassword,
       this.decoration,
-      this.suffix,
-      this.suffixPressed,
+      this.prefixPressed,
       this.prefix,
       this.maxLength,
       Key? key})
@@ -46,9 +45,8 @@ class DefaultTextFormField extends StatelessWidget {
   final bool? isPassword;
   final bool? isClickable;
   final InputDecoration? decoration;
-  final IconData? suffix;
   final IconData? prefix;
-  final Function? suffixPressed;
+  final Function? prefixPressed;
   final TextStyle? style;
   final String? obscuringCharacter;
   final int? maxLength;
@@ -56,18 +54,19 @@ class DefaultTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textDirection: TextDirection.ltr,
       maxLength: maxLength,
       focusNode: focusNode,
       textAlignVertical: TextAlignVertical.center,
-      style: GoogleFonts.roboto(
+      textAlign: TextAlign.end,
+      style: GoogleFonts.cairo(
         fontStyle: FontStyle.normal,
-        color: styleColor ?? ThemeApp.secondaryColor,
+        color: styleColor ?? ThemeApp.blackPrimary,
         fontSize: 17,
         fontWeight: FontWeight.w400,
       ),
       maxLines: 1,
       minLines: 1,
-      obscuringCharacter: obscuringCharacter ?? '*',
       controller: controller,
       validator: validate,
       enabled: isClickable ?? true,
@@ -81,70 +80,64 @@ class DefaultTextFormField extends StatelessWidget {
         contentPadding: const EdgeInsets.fromLTRB(20, 8, 8, 20),
         fillColor: color,
         filled: true,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Icon(
-            prefix,
-            color: prefixColor ?? ThemeApp.secondaryColor,
-            size: 24,
-          ),
-        ),
-        suffixIcon: suffix != null
+        prefixIcon: prefix != null
             ? IconButton(
-                padding: const EdgeInsets.all(15.0),
+                padding: EdgeInsets.zero,
                 onPressed: () {
-                  suffixPressed!();
+                  prefixPressed!();
                 },
                 icon: Icon(
-                  suffix,
-                  color: ThemeApp.secondaryColor,
+                  prefix,
+                  color: ThemeApp.greyColor,
                   size: 24,
                 ),
               )
             : null,
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            const Radius.circular(12.0),
+            Radius.circular(12.0),
           ),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: Colors.black,
           ),
         ),
         hintText: hint,
-        hintStyle: TextStyle(
-          color: ThemeApp.secondaryColor.withOpacity(0.8),
+        hintStyle: const TextStyle(
+          locale: Locale('en'),
+          color: ThemeApp.greyColor,
           height: 1,
         ),
         labelText: label,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
+          locale: Locale('en'),
           color: ThemeApp.primaryColor,
           height: 1,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            const Radius.circular(12.0),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(12.0),
           ),
           borderSide: BorderSide(
-            color: borderSideColor ?? ThemeApp.secondaryColor,
+            color: borderSideColor ?? ThemeApp.greyColor,
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            const Radius.circular(12.0),
+            Radius.circular(12.0),
           ),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: Colors.red,
           ),
         ),
-        focusedErrorBorder: OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            const Radius.circular(12.0),
+            Radius.circular(12.0),
           ),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: Colors.red,
           ),
         ),
-        errorStyle: TextStyle(color: Colors.red, fontSize: 16),
+        errorStyle: const TextStyle(color: Colors.red, fontSize: 16),
       ),
     );
   }

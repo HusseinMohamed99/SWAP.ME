@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:swap_me/screens/onBoard/boarding_screen.dart';
 import 'package:swap_me/shared/network/cache_helper.dart';
 
 class BoardingModel {
@@ -60,7 +61,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       value: true,
     ).then((value) {
       if (value) {
-        Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName,);
+        Navigator.of(context).pushReplacementNamed(
+          BoardingScreen.routeName,
+        );
       }
     });
   }
@@ -84,6 +87,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             },
             child: Text(
               isLast ? '' : 'تخطي',
+              textDirection: TextDirection.ltr,
               style: const TextStyle(
                 color: Color.fromARGB(255, 0, 74, 134),
                 fontSize: 16,
@@ -149,10 +153,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     height: 44,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 0, 74, 134),
+                          backgroundColor:
+                              const Color.fromARGB(255, 0, 74, 134),
                         ),
-                        onPressed: () {},
-                      child: const Text(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, BoardingScreen.routeName);
+                        },
+                        child: const Text(
                           'ابدأ',
                           style: TextStyle(
                             fontFamily: 'FFShamelFamily',

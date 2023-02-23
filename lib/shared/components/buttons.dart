@@ -12,8 +12,8 @@ Widget defaultMaterialButton({
   Color? color,
   Function? onTap,
 }) => Container(
-      width: width ?? 320,
-      height: height ?? 40,
+      width: width ?? 354,
+      height: height ?? 44,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           radius ?? 10,
@@ -25,15 +25,13 @@ Widget defaultMaterialButton({
         height: 22,
         minWidth: 59,
         onPressed: function,
-        child: FittedBox(
-          child: Text(
-            textAlign: TextAlign.center,
-            isUpperCase ? text.toUpperCase() : text,
-            style: GoogleFonts.roboto(
-              fontSize: 19,
-              color: ThemeApp.secondaryColor,
-              fontWeight: FontWeight.w500,
-            ),
+        child: Text(
+          textAlign: TextAlign.center,
+          isUpperCase ? text.toUpperCase() : text,
+          style: GoogleFonts.cairo(
+            fontSize: 16,
+            color: ThemeApp.secondaryColor,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -49,8 +47,8 @@ Widget defaultButton({
   Color? color,
   Function? onTap,
 }) => Container(
-  width: width ?? 310,
-      height: height ?? 43,
+      width: width ?? 354,
+      height: height ?? 44,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           radius ?? 10,
@@ -62,9 +60,7 @@ Widget defaultButton({
         height: 22,
         minWidth: 59,
         onPressed: function,
-        child: FittedBox(
-          child: widget,
-        ),
+        child: widget,
       ),
     );
 
