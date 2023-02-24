@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swap_me/screens/Layout/layout_screen.dart';
+import 'package:swap_me/screens/Password/forgot_password.dart';
 import 'package:swap_me/screens/SignUp/sign_up_screen.dart';
 import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
@@ -32,15 +34,14 @@ class SignInScreen extends StatelessWidget {
               uId = state.uid;
 
               SwapCubit.get(context).getUserData();
-              // navigateAndFinish(context, routeName: CitiesScreen.routeName);
+              navigateAndFinish(context, routeName: LayoutScreen.routeName);
             });
           } else if (state is SignInErrorState) {}
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-            appBar: AppBar(
-              leading: IconButton(
+            appBar: AppBar(automaticallyImplyLeading: false, actions: [
+              IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -48,7 +49,7 @@ class SignInScreen extends StatelessWidget {
                     Icons.arrow_back_ios_new,
                     color: Colors.black,
                   )),
-            ),
+            ]),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
@@ -76,12 +77,12 @@ class SignInScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email Address is Required';
+                            return 'برجاء إدخال البريد الإلكترونى';
                           }
                           return null;
                         },
                         hint: 'البريد الالكتروني',
-                        prefix: Icons.alternate_email,
+                        suffix: Icons.alternate_email,
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -91,13 +92,13 @@ class SignInScreen extends StatelessWidget {
                         keyboardType: TextInputType.visiblePassword,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Password is Required';
+                            return 'برجاء إدخال كلمة المرور';
                           }
                           return null;
                         },
-                        prefix: Icons.lock_outline_sharp,
+                        suffix: Icons.lock_outline_sharp,
                         isPassword: SignInCubit.get(context).isPassword,
-                        prefixPressed: () {
+                        suffixPressed: () {
                           SignInCubit.get(context).showPassword();
                         },
                         hint: 'كلمه المرور',
@@ -106,13 +107,12 @@ class SignInScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 20, right: 20, top: 19, bottom: 73),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextButton(
                               onPressed: () {
-                                // navigateTo(context,
-                                //     routeName:
-                                //     ForgotPassword.routeName);
+                                navigateTo(context,
+                                    routeName: ForgotPassword.routeName);
                               },
                               child: Text(
                                 'هل نسيت كلمه السر؟',
@@ -143,7 +143,7 @@ class SignInScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 19),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextButton(
                               onPressed: () {

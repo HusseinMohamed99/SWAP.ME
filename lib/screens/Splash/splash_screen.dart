@@ -19,14 +19,14 @@ class _SplashScreenState extends State<SplashScreen>  {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-        splashIconSize: 200,
-        backgroundColor: const Color.fromARGB(255, 0, 74, 134),
-        pageTransitionType: PageTransitionType.rightToLeft,
-        splashTransition: SplashTransition.scaleTransition,
-        splash: Image.asset("assets/images/logo.png"),
-        nextScreen: const NewScreen(),
-        duration: 2000,
-        animationDuration: const Duration(seconds: 2));
-
+      splashIconSize: 200,
+      backgroundColor: const Color.fromARGB(255, 0, 74, 134),
+      pageTransitionType: PageTransitionType.rightToLeft,
+      splashTransition: SplashTransition.scaleTransition,
+      splash: Image.asset("assets/images/logo.png"),
+      nextScreen: const NewScreen(),
+      duration: 2000,
+      animationDuration: const Duration(seconds: 2),
+    );
   }
 }

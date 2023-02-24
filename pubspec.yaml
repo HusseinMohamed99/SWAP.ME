@@ -31,10 +31,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-  intl:
-  intl_translation:
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
+  intl: ^0.17.0 # Add this line
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -50,6 +49,7 @@ dependencies:
   firebase_storage: ^11.0.14
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +68,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -115,3 +115,5 @@ flutter:
       fonts:
         - asset: assets/fonts/ArbFONTS-FFShamelFamily-SansOneBold.ttf
         - asset: assets/fonts/ArbFONTS-FFShamelFamily-SansOneBook.ttf
+flutter_intl:
+  enabled: true

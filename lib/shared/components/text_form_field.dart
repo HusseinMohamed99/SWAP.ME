@@ -23,8 +23,8 @@ class DefaultTextFormField extends StatelessWidget {
       this.isClickable,
       this.isPassword,
       this.decoration,
-      this.prefixPressed,
-      this.prefix,
+      this.suffixPressed,
+      this.suffix,
       this.maxLength,
       Key? key})
       : super(key: key);
@@ -45,8 +45,8 @@ class DefaultTextFormField extends StatelessWidget {
   final bool? isPassword;
   final bool? isClickable;
   final InputDecoration? decoration;
-  final IconData? prefix;
-  final Function? prefixPressed;
+  final IconData? suffix;
+  final Function? suffixPressed;
   final TextStyle? style;
   final String? obscuringCharacter;
   final int? maxLength;
@@ -54,11 +54,11 @@ class DefaultTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textDirection: TextDirection.ltr,
+      textDirection: TextDirection.rtl,
       maxLength: maxLength,
       focusNode: focusNode,
       textAlignVertical: TextAlignVertical.center,
-      textAlign: TextAlign.end,
+      textAlign: TextAlign.start,
       style: GoogleFonts.cairo(
         fontStyle: FontStyle.normal,
         color: styleColor ?? ThemeApp.blackPrimary,
@@ -80,14 +80,14 @@ class DefaultTextFormField extends StatelessWidget {
         contentPadding: const EdgeInsets.fromLTRB(20, 8, 8, 20),
         fillColor: color,
         filled: true,
-        prefixIcon: prefix != null
+        suffixIcon: suffix != null
             ? IconButton(
                 padding: EdgeInsets.zero,
                 onPressed: () {
-                  prefixPressed!();
+                  suffixPressed!();
                 },
                 icon: Icon(
-                  prefix,
+                  suffix,
                   color: ThemeApp.greyColor,
                   size: 24,
                 ),

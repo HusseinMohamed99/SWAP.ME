@@ -80,27 +80,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.white,
-        actions: [
-          TextButton(
-            onPressed: () {
-              submit();
-            },
-            child: Text(
-              isLast ? '' : 'تخطي',
-              textDirection: TextDirection.ltr,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 0, 74, 134),
-                fontSize: 16,
-                fontFamily: 'FFShamelFamily',
-                fontWeight: FontWeight.bold,
-              ),
-
-              // style: TextStyle(
-
-              // ),
+        title: TextButton(
+          onPressed: () {
+            submit();
+          },
+          child: Text(
+            isLast ? '' : 'تخطي',
+            textDirection: TextDirection.ltr,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 0, 74, 134),
+              fontSize: 16,
+              fontFamily: 'FFShamelFamily',
+              fontWeight: FontWeight.bold,
             ),
+
+            // style: TextStyle(
+
+            // ),
           ),
-        ],
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

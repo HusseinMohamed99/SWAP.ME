@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:swap_me/screens/EmailVerify/email_verify.dart';
 import 'package:swap_me/screens/SignIn/sign_in_screen.dart';
 import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
@@ -13,15 +14,10 @@ import 'package:swap_me/shared/cubit/signUpCubit/sign_up_state.dart';
 import 'package:swap_me/shared/network/cache_helper.dart';
 import 'package:swap_me/shared/styles/theme.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
   static const String routeName = 'signUp';
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     var formKey = GlobalKey<FormState>();
@@ -36,29 +32,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
       create: (BuildContext context) => SignUpCubit(),
       child: BlocConsumer<SignUpCubit, SignUpStates>(
         listener: (context, state) {
-          if (state is SignUpLoadingState) {}
           if (state is UserCreateSuccessState) {
             CacheHelper.saveData(value: state.uid, key: 'uId').then((value) {
               uId = state.uid;
-
-              //   navigateAndFinish(context, routeName: CitiesScreen.routeName);
+              Navigator.pushReplacementNamed(context, EmailVerify.routeName);
             });
-          } else if (state is SignUpErrorState) {}
+          }
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               toolbarHeight: 30,
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
+              ],
             ),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -86,12 +82,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.name,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email Address is Required';
+                            return 'برجاء إدخال الاسم الأول';
                           }
                           return null;
                         },
                         hint: 'الاسم الاول',
-                        prefix: Icons.supervised_user_circle_sharp,
+                        suffix: Icons.supervised_user_circle_sharp,
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -101,12 +97,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.name,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email Address is Required';
+                            return 'برجاء إدخال الاسم الأخير';
                           }
                           return null;
                         },
                         hint: 'الاسم الاخير',
-                        prefix: Icons.person,
+                        suffix: Icons.person,
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -116,12 +112,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.emailAddress,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email Address is Required';
+                            return 'برجاء إدخال البريد الإلكترونى';
                           }
                           return null;
                         },
                         hint: 'البريد الالكتروني',
-                        prefix: Icons.alternate_email_outlined,
+                        suffix: Icons.alternate_email_outlined,
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -131,17 +127,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.visiblePassword,
                         validate: (String? value) {
                           if (value!.trim().isEmpty) {
-                            return 'Please enter your Password';
+                            return 'برجاء إدخال كلمة المرور';
                           } else if (passwordController.text.trim() !=
                               confirmPasswordController.text.trim()) {
-                            return "your Password doesn't same";
+                            return "كلمة المرور ليست متطابقة";
                           }
 
                           return null;
                         },
-                        prefix: SignUpCubit.get(context).suffix,
+                        suffix: SignUpCubit.get(context).suffix,
                         isPassword: SignUpCubit.get(context).isPassword,
-                        prefixPressed: () {
+                        suffixPressed: () {
                           SignUpCubit.get(context).showPassword();
                         },
                         hint: 'كلمه المرور',
@@ -154,20 +150,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.visiblePassword,
                         validate: (String? value) {
                           if (value!.trim().isEmpty) {
-                            return 'Please enter your Confirm Password';
-                          }
-                          if (value.trim().length <= 6) {
-                            return 'No';
+                            return 'تأكيد كلمة المرور';
                           } else if (passwordController.text.trim() !=
                               confirmPasswordController.text.trim()) {
-                            return "your confirm Password doesn't same";
+                            return "كلمة المرور ليست متطابقة";
                           }
 
                           return null;
                         },
-                        prefix: SignUpCubit.get(context).suffix,
+                        suffix: SignUpCubit.get(context).suffix,
                         isPassword: SignUpCubit.get(context).isPassword,
-                        prefixPressed: () {
+                        suffixPressed: () {
                           SignUpCubit.get(context).showPassword();
                         },
                         hint: 'تأكيد كلمه المرور',
@@ -180,12 +173,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.datetime,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Password is Required';
+                            return 'برجاء إدخال تاريخ ميلادك';
                           }
                           return null;
                         },
-                        prefix: Icons.keyboard_arrow_down,
-                        prefixPressed: () {
+                        suffix: Icons.keyboard_arrow_down,
+                        suffixPressed: () {
                           showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
@@ -207,14 +200,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.phone,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Phone is Required';
+                            return 'برجاء إدخال رقم الهاتف';
                           } else if (value.length != 11) {
-                            return 'Sorry, your phone must be\n 11 numbers long.';
+                            return 'يجب ان يكون رقم الهاتف مكون من 11 رقم';
                           } else {
                             return null;
                           }
                         },
-                        prefix: Icons.phone,
+                        suffix: Icons.phone,
                         hint: 'ادخل رقم الهاتف',
                       ),
                       const DSize(width: 0, height: 26),
@@ -240,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 19),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextButton(
                               onPressed: () {
@@ -268,21 +261,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       ),
     );
-  }
-
-  void buildShowDatePicker(BuildContext context) async {
-    var userSelectedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now().subtract(const Duration(days: 18250)),
-      lastDate: DateTime.now(),
-    );
-    if (userSelectedDate == null) {
-      return;
-    }
-
-    setState(() {
-      //widget.tasks.dateTime = userSelectedDate;
-    });
   }
 }

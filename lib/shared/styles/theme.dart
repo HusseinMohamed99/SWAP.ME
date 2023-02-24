@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class ThemeApp {
   static const primaryColor = Color.fromARGB(255, 0, 74, 134);
   static const secondaryColor = Color.fromARGB(255, 255, 255, 255);
-  static const backgroundColor = Color.fromARGB(255, 245, 245, 245);
+  static const backgroundColor = Color.fromARGB(255, 228, 228, 228);
   static const blackPrimary = Color.fromARGB(255, 0, 0, 0);
   static const yellowColor = Color.fromARGB(255, 255, 255, 0);
   static const blueColor = Color.fromARGB(255, 68, 138, 255);
@@ -17,9 +17,11 @@ class ThemeApp {
       elevation: 0,
       backgroundColor: backgroundColor,
       systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: backgroundColor,
-          systemNavigationBarColor: backgroundColor,
-          systemNavigationBarDividerColor: backgroundColor),
+        statusBarColor: backgroundColor,
+        systemNavigationBarColor: backgroundColor,
+        systemNavigationBarDividerColor: backgroundColor,
+        statusBarIconBrightness: Brightness.dark,
+      ),
     ),
     scaffoldBackgroundColor: backgroundColor,
     cardColor: secondaryColor,
@@ -63,6 +65,16 @@ class ThemeApp {
         color: blackPrimary,
         fontWeight: FontWeight.w500,
       ),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      showSelectedLabels: true,
+      showUnselectedLabels: false,
+      selectedIconTheme: IconThemeData(size: 30, color: primaryColor),
+      unselectedIconTheme: IconThemeData(size: 30, color: greyColor),
+      selectedLabelStyle: TextStyle(color: primaryColor),
+      selectedItemColor: primaryColor,
     ),
   );
 }

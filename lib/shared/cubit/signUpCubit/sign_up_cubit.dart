@@ -51,6 +51,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
       image:
           'https://cdn-icons-png.flaticon.com/512/214/214070.png?w=740&t=st=1676604521~exp=1676605121~hmac=cbd7577a96e66bf8093132e5b5da0c2a649f4f7c7cdfb6019708db0b417ddc8c',
       phone: phone,
+      isEmailVerified: false,
     );
     FirebaseFirestore.instance
         .collection('users')
