@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         width: double.infinity,
         height: 100,
         color: Colors.white,
@@ -60,9 +60,9 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircleAvatar(
-              backgroundColor: const Color.fromARGB(255, 249, 201, 124),
-              radius: 40,
-              child: Image.asset('assets/images/Group 171.png'),
+              backgroundColor: Colors.white,
+              radius: 80,
+              child: Image.network(model.image),
             ),
             Text(
               model.name,
