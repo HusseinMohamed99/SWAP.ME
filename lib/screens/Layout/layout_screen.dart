@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 import 'package:swap_me/shared/components/navigator.dart';
@@ -25,13 +25,11 @@ class LayoutScreen extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               IconButton(
-                  onPressed: () {
-                    logOut(context);
-                  },
-                  icon: const Icon(
-                    FontAwesomeIcons.barsStaggered,
-                    color: ThemeApp.primaryColor,
-                  )),
+                onPressed: () {
+                  logOut(context);
+                },
+                icon: SvgPicture.asset('assets/images/menu-left-alt.svg'),
+              ),
             ],
             centerTitle: true,
             title: Text(
@@ -44,13 +42,14 @@ class LayoutScreen extends StatelessWidget {
             ),
             leading: Padding(
               padding: const EdgeInsets.only(right: 10.0),
-              child: Image.asset('assets/images/Group 281.png'),
+              child: SvgPicture.asset('assets/images/Group 281.svg'),
             ),
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: ThemeApp.primaryColor,
             shape: const StadiumBorder(
-                side: BorderSide(color: Colors.white, width: 0)),
+              side: BorderSide(color: Colors.white, width: 0),
+            ),
             onPressed: () {},
             child: const Icon(Icons.add),
           ),
@@ -58,7 +57,7 @@ class LayoutScreen extends StatelessWidget {
               FloatingActionButtonLocation.centerDocked,
           body: cubit.screens[cubit.currentIndex],
           bottomNavigationBar: BottomAppBar(
-            color: ThemeApp.backgroundColor,
+            color: Colors.white,
             elevation: 5,
             shape: const CircularNotchedRectangle(),
             notchMargin: 5,
@@ -70,33 +69,28 @@ class LayoutScreen extends StatelessWidget {
               onTap: (index) {
                 cubit.changeBottomNav(index);
               },
-              items: const [
+              items: [
                 BottomNavigationBarItem(
                   backgroundColor: Colors.transparent,
-                  icon: Icon(
-                    FontAwesomeIcons.houseUser,
-                  ),
+                  icon: SvgPicture.asset(
+                      'assets/images/Huge-icon-smart house-outline-home 2.svg'),
                   label: 'الرئيسية',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.transparent,
-                  icon: Icon(
-                    FontAwesomeIcons.bell,
-                  ),
+                  icon: SvgPicture.asset(
+                      'assets/images/Huge-icon-device-outline-notification.svg'),
                   label: 'تنبيهاتى',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.transparent,
-                  icon: Icon(
-                    FontAwesomeIcons.newspaper,
-                  ),
+                  icon: SvgPicture.asset('assets/images/Group 296.svg'),
                   label: 'إعلاناتى',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.transparent,
-                  icon: Icon(
-                    FontAwesomeIcons.user,
-                  ),
+                  icon: SvgPicture.asset(
+                      'assets/images/Huge-icon-user-outline-user.svg'),
                   label: 'حسابى',
                 ),
               ],

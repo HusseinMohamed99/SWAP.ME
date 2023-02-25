@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swap_me/screens/HomeScreen/home_screen.dart';
 import 'package:swap_me/screens/Password/forgot_password.dart';
 import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
+import 'package:swap_me/shared/components/toast.dart';
 import 'package:swap_me/shared/cubit/emailVerifyCubit/email_verify_cubit.dart';
 import 'package:swap_me/shared/cubit/emailVerifyCubit/email_verify_state.dart';
 import 'package:swap_me/shared/styles/theme.dart';
@@ -19,7 +21,14 @@ class EmailVerify extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => EmailVerificationCubit(),
       child: BlocConsumer<EmailVerificationCubit, EmailVerificationStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is SendVerificationErrorState) {
+            showToast(
+              text: state.errorString,
+              state: ToastStates.error,
+            );
+          }
+        },
         builder: (context, state) {
           var cubit = EmailVerificationCubit.get(context);
           return Scaffold(
@@ -47,13 +56,15 @@ class EmailVerify extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const DSize(width: 0, height: 125),
-                  Image.asset(
-                    'assets/images/Group 380.png',
+                  SvgPicture.asset(
+                    'assets/images/Group 380.svg',
                     alignment: Alignment.center,
                   ),
                   const Spacer(),
                   state is SendVerificationLoadingState
-                      ? const CircularProgressIndicator()
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
                       : cubit.isEmailSent
                           ? Padding(
                               padding: const EdgeInsets.only(
@@ -63,8 +74,10 @@ class EmailVerify extends StatelessWidget {
                                 children: [
                                   TextButton(
                                     onPressed: () {
-                                      navigateTo(context,
-                                          routeName: ForgotPassword.routeName);
+                                      navigateTo(
+                                        context,
+                                        routeName: ForgotPassword.routeName,
+                                      );
                                     },
                                     child: Text(
                                       'لم تستلم الرمز؟',
@@ -83,21 +96,25 @@ class EmailVerify extends StatelessWidget {
                                 cubit.sendEmailVerification();
                               },
                               text: 'ارسال',
-                              color: ThemeApp.primaryColor),
+                              color: ThemeApp.primaryColor,
+                            ),
                   if (cubit.isEmailSent)
                     defaultMaterialButton(
-                        function: () {
-                          cubit.reloadUser().then(
-                            (value) {
-                              if (cubit.isEmailVerified) {
-                                navigateAndFinish(context,
-                                    routeName: HomeScreen.routeName);
-                              } else {}
-                            },
-                          );
-                        },
-                        text: 'الصفحة الرئيسية',
-                        color: ThemeApp.primaryColor),
+                      function: () {
+                        cubit.reloadUser().then(
+                          (value) {
+                            if (cubit.isEmailVerified) {
+                              navigateAndFinish(
+                                context,
+                                routeName: HomeScreen.routeName,
+                              );
+                            } else {}
+                          },
+                        );
+                      },
+                      text: 'الصفحة الرئيسية',
+                      color: ThemeApp.primaryColor,
+                    ),
                 ],
               ),
             ),

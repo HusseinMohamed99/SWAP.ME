@@ -8,6 +8,7 @@ import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
 import 'package:swap_me/shared/components/text_form_field.dart';
+import 'package:swap_me/shared/components/toast.dart';
 import 'package:swap_me/shared/constants/constants.dart';
 import 'package:swap_me/shared/cubit/signInCubit/sign_in_cubit.dart';
 import 'package:swap_me/shared/cubit/signInCubit/sign_in_state.dart';
@@ -30,13 +31,22 @@ class SignInScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is SignInLoadingState) {}
           if (state is SignInSuccessState) {
+            showToast(
+              text: 'تم تسجيل الدخول بنجاح',
+              state: ToastStates.success,
+            );
             CacheHelper.saveData(value: state.uid, key: 'uId').then((value) {
               uId = state.uid;
 
               SwapCubit.get(context).getUserData();
               navigateAndFinish(context, routeName: LayoutScreen.routeName);
             });
-          } else if (state is SignInErrorState) {}
+          } else if (state is SignInErrorState) {
+            showToast(
+              text: state.error,
+              state: ToastStates.error,
+            );
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -47,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios_new,
-                    color: Colors.black,
+                    color: ThemeApp.primaryColor,
                   )),
             ]),
             body: Padding(
@@ -96,7 +106,7 @@ class SignInScreen extends StatelessWidget {
                           }
                           return null;
                         },
-                        suffix: Icons.lock_outline_sharp,
+                        suffix: SignInCubit.get(context).suffix,
                         isPassword: SignInCubit.get(context).isPassword,
                         suffixPressed: () {
                           SignInCubit.get(context).showPassword();

@@ -8,6 +8,7 @@ import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
 import 'package:swap_me/shared/components/text_form_field.dart';
+import 'package:swap_me/shared/components/toast.dart';
 import 'package:swap_me/shared/constants/constants.dart';
 import 'package:swap_me/shared/cubit/signUpCubit/sign_up_cubit.dart';
 import 'package:swap_me/shared/cubit/signUpCubit/sign_up_state.dart';
@@ -33,10 +34,19 @@ class SignUpScreen extends StatelessWidget {
       child: BlocConsumer<SignUpCubit, SignUpStates>(
         listener: (context, state) {
           if (state is UserCreateSuccessState) {
+            showToast(
+              text: 'تم إنشاء حسابك بنجاح',
+              state: ToastStates.error,
+            );
             CacheHelper.saveData(value: state.uid, key: 'uId').then((value) {
               uId = state.uid;
               Navigator.pushReplacementNamed(context, EmailVerify.routeName);
             });
+          } else if (state is UserCreateErrorState) {
+            showToast(
+              text: state.error,
+              state: ToastStates.error,
+            );
           }
         },
         builder: (context, state) {
@@ -51,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios_new,
-                    color: Colors.black,
+                    color: ThemeApp.primaryColor,
                   ),
                 ),
               ],

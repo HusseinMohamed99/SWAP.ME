@@ -8,7 +8,7 @@ class SendVerificationLoadingState extends EmailVerificationStates {}
 class SendVerificationSuccessState extends EmailVerificationStates {}
 
 class SendVerificationErrorState extends EmailVerificationStates {
-  final String? errorString;
+  final String errorString;
 
   SendVerificationErrorState(this.errorString);
 }

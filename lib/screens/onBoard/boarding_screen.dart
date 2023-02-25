@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swap_me/screens/SignIn/sign_in_screen.dart';
 import 'package:swap_me/screens/SignUp/sign_up_screen.dart';
@@ -24,13 +25,16 @@ class BoardingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/Group 33.png',
+            SvgPicture.asset(
+              'assets/images/Group 33.svg',
               width: double.infinity,
-              height: 200,
+              height: 100,
             ),
-            Text('مرحبا بكم في قايضني',
-                style: Theme.of(context).textTheme.headline3),
+            const DSize(height: 46, width: 0),
+            Text(
+              'مرحبا بكم في قايضني',
+              style: Theme.of(context).textTheme.headline3,
+            ),
             const DSize(height: 16, width: 0),
             Text(
               'هو تطبيق يمكن من الأشخاص تبادل/ مبادله اغراضهم',
@@ -42,25 +46,27 @@ class BoardingScreen extends StatelessWidget {
             ),
             const DSize(height: 113, width: 0),
             defaultButton(
-                function: () {
-                  Navigator.pushNamed(context, SignInScreen.routeName);
-                },
-                widget: Text(
-                  'تسجيل الدخول',
-                  style: GoogleFonts.cairo(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: ThemeApp.primaryColor,
-                  ),
+              function: () {
+                Navigator.pushNamed(context, SignInScreen.routeName);
+              },
+              widget: Text(
+                'تسجيل الدخول',
+                style: GoogleFonts.cairo(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeApp.primaryColor,
                 ),
-                color: ThemeApp.secondaryColor),
+              ),
+              color: ThemeApp.secondaryColor,
+            ),
             const DSize(height: 20, width: 0),
             defaultMaterialButton(
-                function: () {
-                  Navigator.pushNamed(context, SignUpScreen.routeName);
-                },
-                text: 'انشاء حساب',
-                color: ThemeApp.primaryColor)
+              function: () {
+                Navigator.pushNamed(context, SignUpScreen.routeName);
+              },
+              text: 'انشاء حساب',
+              color: ThemeApp.primaryColor,
+            )
           ],
         ),
       ),

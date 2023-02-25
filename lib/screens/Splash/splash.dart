@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swap_me/screens/Layout/layout_screen.dart';
 import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 import 'package:swap_me/shared/constants/constants.dart';
 import 'package:swap_me/shared/network/cache_helper.dart';
+import 'package:swap_me/shared/styles/theme.dart';
 
 class NewScreen extends StatefulWidget {
   static const routeName = "NewScreen";
@@ -46,14 +48,14 @@ class _NewScreenState extends State<NewScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Color.fromARGB(255, 0, 74, 134),
+          statusBarColor: ThemeApp.primaryColor,
           statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.dark,
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 0, 74, 134),
+      backgroundColor: ThemeApp.primaryColor,
       body: Center(
-        child: Image.asset("assets/images/Group 377.png"),
+        child: SvgPicture.asset("assets/images/Group 411.svg"),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:swap_me/model/category_model.dart';
 import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 import 'package:swap_me/shared/components/navigator.dart';
@@ -59,6 +60,12 @@ class HomeScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            if (model.image.isEmpty)
+              const CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 60,
+                child: Icon(FontAwesomeIcons.info),
+              ),
             CircleAvatar(
               backgroundColor: Colors.white,
               radius: 60,
@@ -71,11 +78,12 @@ class HomeScreen extends StatelessWidget {
                   ),
             ),
             IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
-                )),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                color: ThemeApp.primaryColor,
+              ),
+            ),
           ],
         ),
       ),
