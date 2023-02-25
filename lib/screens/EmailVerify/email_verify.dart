@@ -22,7 +22,12 @@ class EmailVerify extends StatelessWidget {
       create: (BuildContext context) => EmailVerificationCubit(),
       child: BlocConsumer<EmailVerificationCubit, EmailVerificationStates>(
         listener: (context, state) {
-          if (state is SendVerificationErrorState) {
+          if (state is SendVerificationSuccessState) {
+            showToast(
+              text: 'تم إرسال إيميل تأكيد حسابك',
+              state: ToastStates.error,
+            );
+          } else if (state is SendVerificationErrorState) {
             showToast(
               text: state.errorString,
               state: ToastStates.error,
