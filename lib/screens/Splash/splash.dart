@@ -16,7 +16,6 @@ class NewScreen extends StatefulWidget {
 }
 
 class _NewScreenState extends State<NewScreen> {
-
   @override
   void initState() {
     Timer(const Duration(seconds: 2), () {

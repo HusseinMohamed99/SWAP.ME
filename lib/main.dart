@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale('ar'),
+            locale: const Locale('ar'),
             routes: {
               OnBoardingScreen.routeName: (_) => const OnBoardingScreen(),
               SplashScreen.routeName: (_) => const SplashScreen(),

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swap_me/screens/onBoard/on_board_screen.dart';
+import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_cubit.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_state.dart';
+import 'package:swap_me/shared/network/cache_helper.dart';
 import 'package:swap_me/shared/styles/theme.dart';
 
 class LayoutScreen extends StatelessWidget {
@@ -22,8 +25,10 @@ class LayoutScreen extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               IconButton(
-                  onPressed: () {},
-                  icon: Icon(
+                  onPressed: () {
+                    logOut(context);
+                  },
+                  icon: const Icon(
                     FontAwesomeIcons.barsStaggered,
                     color: ThemeApp.primaryColor,
                   )),
@@ -100,5 +105,15 @@ class LayoutScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void logOut(context) {
+    CacheHelper.removeData(
+      key: 'uId',
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(context, routeName: OnBoardingScreen.routeName);
+      }
+    });
   }
 }

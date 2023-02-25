@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swap_me/model/category_model.dart';
@@ -79,8 +80,12 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         category.add(CategoryMainModel.fromFireStore(element.data()));
         cId.add(element.id);
-        print(element.data());
-        print('====================================');
+        if (kDebugMode) {
+          print(element.data());
+        }
+        if (kDebugMode) {
+          print('====================================');
+        }
       }
     });
   }
