@@ -75,6 +75,7 @@ class ThemeApp {
       unselectedIconTheme: IconThemeData(size: 25, color: greyColor),
       selectedLabelStyle: TextStyle(color: primaryColor),
       selectedItemColor: primaryColor,
+      unselectedLabelStyle: TextStyle(color: greyColor),
     ),
   );
 }

@@ -24,10 +24,14 @@ void navigateTo(context, {required String routeName, Object? arguments}) {
   Navigator.pushNamed(context, routeName, arguments: arguments);
 }
 
-// void navigateToWithRouting(context, widget) {
-//   Navigator.push(context, widget);
-//   Navigator.push(context, Routing().createRoute(widget));
-// }
+void navigate(context, widget) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ),
+  );
+}
 
 void navigateAndFinish(
   context, {

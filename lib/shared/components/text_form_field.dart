@@ -8,6 +8,7 @@ class DefaultTextFormField extends StatelessWidget {
       required this.controller,
       required this.keyboardType,
       required this.validate,
+      this.maxLines,
       this.hint,
       this.label,
       this.onTap,
@@ -50,6 +51,7 @@ class DefaultTextFormField extends StatelessWidget {
   final TextStyle? style;
   final String? obscuringCharacter;
   final int? maxLength;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +67,10 @@ class DefaultTextFormField extends StatelessWidget {
         fontSize: 17,
         fontWeight: FontWeight.w400,
       ),
-      maxLines: 1,
+      maxLines: maxLines ?? 1,
       minLines: 1,
       controller: controller,
       validator: validate,
-      enabled: isClickable ?? true,
-      onTap: onTap,
-      onFieldSubmitted: onFieldSubmitted,
-      onChanged: onChanged,
       obscureText: isPassword ?? false,
       keyboardType: keyboardType,
       autofocus: false,

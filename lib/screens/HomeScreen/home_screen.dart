@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:swap_me/model/arg_model.dart';
 import 'package:swap_me/model/category_model.dart';
+import 'package:swap_me/model/product_model.dart';
+import 'package:swap_me/screens/Product/product_screen.dart';
 import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
@@ -22,17 +25,7 @@ class HomeScreen extends StatelessWidget {
         var cubit = SwapCubit.get(context);
         return Column(
           children: [
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return buildCategoryItem(context, cubit.category[index]);
-                },
-                separatorBuilder: (context, _) {
-                  return const DSize(height: 20, width: 0);
-                },
-                itemCount: cubit.category.length,
-              ),
-            ),
+            Expanded(child: buildCategoryItem(context, cubit.product!)),
           ],
         );
       },
@@ -49,18 +42,53 @@ class HomeScreen extends StatelessWidget {
     });
   }
 
-  Widget buildCategoryItem(BuildContext context, CategoryMainModel model) {
+  Widget buildCategoryItem(BuildContext context, ProductModel productModel) {
+    var cubit = SwapCubit.get(context);
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return CategoryItem(productModel,
+            categoryMainModel: cubit.category[index]);
+      },
+      separatorBuilder: (context, _) {
+        return const DSize(height: 20, width: 0);
+      },
+      itemCount: cubit.category.length,
+    );
+  }
+}
+
+class CategoryItem extends StatelessWidget {
+  const CategoryItem(
+    this.productModel, {
+    Key? key,
+    required this.categoryMainModel,
+  }) : super(key: key);
+
+  final CategoryMainModel categoryMainModel;
+  final ProductModel productModel;
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        SwapCubit.get(context).getProData();
+        SwapCubit.get(context).getProductData(categoryMainModel.cId);
+        Navigator.pushNamed(
+          context,
+          ProductScreen.routeName,
+          arguments: ScreenArgs(
+              productModel: productModel, categoryMainModel: categoryMainModel),
+        );
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8),
         width: double.infinity,
-        height: 100,
+        height: 90,
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (model.image.isEmpty)
+            if (categoryMainModel.image.isEmpty)
               const CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 60,
@@ -69,10 +97,10 @@ class HomeScreen extends StatelessWidget {
             CircleAvatar(
               backgroundColor: Colors.white,
               radius: 60,
-              child: Image.network(model.image),
+              child: Image.network(categoryMainModel.image),
             ),
             Text(
-              model.name,
+              categoryMainModel.name,
               style: Theme.of(context).textTheme.subtitle1?.copyWith(
                     color: ThemeApp.primaryColor,
                   ),

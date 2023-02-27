@@ -5,12 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:swap_me/firebase_options.dart';
+import 'package:swap_me/screens/Ads/add_ads.dart';
+import 'package:swap_me/screens/Ads/ads_details.dart';
+import 'package:swap_me/screens/Ads/ads_screen.dart';
+import 'package:swap_me/screens/Ads/ads_screen.dart';
+import 'package:swap_me/screens/Ads/image_details.dart';
 import 'package:swap_me/screens/EmailVerify/email_verify.dart';
 import 'package:swap_me/screens/HomeScreen/home_screen.dart';
 import 'package:swap_me/screens/Layout/layout_screen.dart';
 import 'package:swap_me/screens/MyAds/my_ads.dart';
 import 'package:swap_me/screens/Notifications/notifications_screen.dart';
 import 'package:swap_me/screens/Password/forgot_password.dart';
+import 'package:swap_me/screens/Product/product_screen.dart';
 import 'package:swap_me/screens/Profile/profile_screen.dart';
 import 'package:swap_me/screens/SignIn/sign_in_screen.dart';
 import 'package:swap_me/screens/SignUp/sign_up_screen.dart';
@@ -53,7 +59,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SwapCubit()
             ..getUserData()
-            ..getCategoryData(),
+            ..getCategoryData()
+            ..getProData()
+            ..getAdsData()
+            ..getMyAdsData(uId),
         ),
       ],
       child: BlocConsumer<SwapCubit, SwapStates>(
@@ -89,6 +98,11 @@ class MyApp extends StatelessWidget {
               NotificationScreen.routeName: (_) => const NotificationScreen(),
               MyAdsScreen.routeName: (_) => const MyAdsScreen(),
               MyProfileScreen.routeName: (_) => const MyProfileScreen(),
+              ProductScreen.routeName: (_) => const ProductScreen(),
+              AdsScreen.routeName: (_) => const AdsScreen(),
+              AdsDetails.routeName: (_) => const AdsDetails(),
+              ImageDetails.routeName: (_) => const ImageDetails(),
+              AddAds.routeName: (_) => const AddAds(),
             },
             initialRoute: SplashScreen.routeName,
           );

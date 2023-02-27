@@ -54,6 +54,8 @@ dependencies:
   bot_toast: ^4.0.3
   fluttertoast: ^8.2.1
   flutter_svg: ^1.1.6
+  carousel_slider: ^4.2.1
+  image_picker: ^0.8.6+3
 
 dev_dependencies:
   flutter_test:

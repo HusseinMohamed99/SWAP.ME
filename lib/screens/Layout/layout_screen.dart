@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swap_me/model/arg_model.dart';
+import 'package:swap_me/model/category_model.dart';
+import 'package:swap_me/model/product_model.dart';
+import 'package:swap_me/screens/Ads/add_ads.dart';
 import 'package:swap_me/screens/onBoard/on_board_screen.dart';
 import 'package:swap_me/shared/components/navigator.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_cubit.dart';
@@ -50,7 +54,14 @@ class LayoutScreen extends StatelessWidget {
             shape: const StadiumBorder(
               side: BorderSide(color: Colors.white, width: 0),
             ),
-            onPressed: () {},
+            onPressed: () {
+              SwapCubit.get(context).getProData();
+              SwapCubit.get(context).getDataPro();
+              Navigator.pushNamed(
+                context,
+                AddAds.routeName,
+              );
+            },
             child: const Icon(Icons.add),
           ),
           floatingActionButtonLocation:
@@ -64,31 +75,27 @@ class LayoutScreen extends StatelessWidget {
             child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              // backgroundColor: Colors.transparent,
               currentIndex: cubit.currentIndex,
               onTap: (index) {
                 cubit.changeBottomNav(index);
               },
               items: [
                 BottomNavigationBarItem(
-                  backgroundColor: Colors.transparent,
                   icon: SvgPicture.asset(
                       'assets/images/Huge-icon-smart house-outline-home 2.svg'),
                   label: 'الرئيسية',
                 ),
                 BottomNavigationBarItem(
-                  backgroundColor: Colors.transparent,
                   icon: SvgPicture.asset(
                       'assets/images/Huge-icon-device-outline-notification.svg'),
                   label: 'تنبيهاتى',
                 ),
                 BottomNavigationBarItem(
-                  backgroundColor: Colors.transparent,
                   icon: SvgPicture.asset('assets/images/Group 296.svg'),
                   label: 'إعلاناتى',
                 ),
                 BottomNavigationBarItem(
-                  backgroundColor: Colors.transparent,
                   icon: SvgPicture.asset(
                       'assets/images/Huge-icon-user-outline-user.svg'),
                   label: 'حسابى',
