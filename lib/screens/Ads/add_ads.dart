@@ -121,7 +121,7 @@ class _AddAdsState extends State<AddAds> {
                       color: ThemeApp.secondaryColor.withOpacity(0.3),
                       context: context,
                       controller: productController,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.text,
                       validate: (String? value) {
                         if (value!.isEmpty) {
                           return 'برجاء إدخال اسم المنتج';
@@ -241,7 +241,7 @@ class _AddAdsState extends State<AddAds> {
                     const DSize(height: 16, width: 0),
                     Row(
                       children: [
-                        MyDivider(
+                        const MyDivider(
                           width: 150,
                         ),
                         SvgPicture.asset(
@@ -249,7 +249,7 @@ class _AddAdsState extends State<AddAds> {
                           width: 20,
                           height: 35,
                         ),
-                        MyDivider(
+                        const MyDivider(
                           width: 150,
                         ),
                       ],
@@ -361,10 +361,11 @@ class _AddAdsState extends State<AddAds> {
                           cubit.uploadAdsImage(
                             name: productController.text,
                             desc: descController.text,
-                            categoryName: dropdownValue1,
-                            productName: dropdownValue2,
+                            categoryName: dropdownValue1.toString(),
+                            productName: dropdownValue2.toString(),
                           );
                         }
+                        return null;
                       },
                       widget: Text(
                         'نشر الاعلان',

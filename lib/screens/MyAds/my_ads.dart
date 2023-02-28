@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swap_me/model/ads_model.dart';
-import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/my_divider.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_cubit.dart';
@@ -34,7 +32,7 @@ class MyAdsScreen extends StatelessWidget {
                       color: ThemeApp.primaryColor,
                     ),
                   ),
-                  DSize(height: 0, width: 10),
+                  const DSize(height: 0, width: 10),
                   Text(
                     '${cubit.userAds.length}',
                     style: GoogleFonts.cairo(
@@ -49,7 +47,7 @@ class MyAdsScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemCount: cubit.userAds.length,
                   separatorBuilder: (context, index) =>
-                      DSize(height: 10, width: 0),
+                      const DSize(height: 10, width: 0),
                   itemBuilder: (context, index) =>
                       (buildAdsItem(context, cubit.userAds[index])),
                 ),
@@ -95,7 +93,7 @@ class MyAdsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${adsModel.name}',
+                              adsModel.name,
                               style: GoogleFonts.cairo(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -143,7 +141,7 @@ class MyAdsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                MyDivider(),
+                const MyDivider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -151,15 +149,15 @@ class MyAdsScreen extends StatelessWidget {
                     children: [
                       Container(
                         width: 60,
-                        padding: EdgeInsets.all(2),
-                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color.fromARGB(255, 242, 242, 242),
+                          color: const Color.fromARGB(255, 242, 242, 242),
                         ),
                         child: Column(
                           children: [
-                            Icon(Icons.edit, color: ThemeApp.greyColor),
+                            const Icon(Icons.edit, color: ThemeApp.greyColor),
                             Text(
                               'تعديل',
                               style: GoogleFonts.cairo(
@@ -171,22 +169,22 @@ class MyAdsScreen extends StatelessWidget {
                       ),
                       Container(
                         width: 60,
-                        padding: EdgeInsets.all(2),
-                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color.fromARGB(255, 242, 242, 242),
+                          color: const Color.fromARGB(255, 242, 242, 242),
                         ),
                         child: Column(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.delete_forever,
                               color: Color.fromARGB(255, 234, 53, 73),
                             ),
                             Text(
                               'حذف',
                               style: GoogleFonts.cairo(
-                                color: Color.fromARGB(255, 234, 53, 73),
+                                color: const Color.fromARGB(255, 234, 53, 73),
                               ),
                             ),
                           ],
@@ -194,15 +192,15 @@ class MyAdsScreen extends StatelessWidget {
                       ),
                       Container(
                         width: 60,
-                        padding: EdgeInsets.all(2),
-                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color.fromARGB(255, 242, 242, 242),
+                          color: const Color.fromARGB(255, 242, 242, 242),
                         ),
                         child: Column(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.remove_red_eye_outlined,
                               color: ThemeApp.greyColor,
                             ),
@@ -217,15 +215,15 @@ class MyAdsScreen extends StatelessWidget {
                       ),
                       Container(
                         width: 60,
-                        padding: EdgeInsets.all(2),
-                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color.fromARGB(255, 242, 242, 242),
+                          color: const Color.fromARGB(255, 242, 242, 242),
                         ),
                         child: Column(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.share_sharp,
                               color: ThemeApp.greyColor,
                             ),
@@ -241,12 +239,12 @@ class MyAdsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                MyDivider(),
+                const MyDivider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: const [
                       Icon(
                         Icons.star_border,
                         color: ThemeApp.primaryColor,

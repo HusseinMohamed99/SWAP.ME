@@ -62,6 +62,8 @@ class ProductScreen extends StatelessWidget {
                     productModel: screenArgs.productModel),
                 defaultButton(
                   function: () {
+                    SwapCubit.get(context).getProData();
+                    SwapCubit.get(context).getDataPro();
                     Navigator.pushNamed(context, AddAds.routeName);
                   },
                   widget: Text(

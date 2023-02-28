@@ -90,10 +90,10 @@ class SwapCubit extends Cubit<SwapStates> {
         category.add(CategoryMainModel.fromFireStore(element.data()));
         cId.add(element.id);
         if (kDebugMode) {
-          print(element.data());
+         // print(element.data());
         }
         if (kDebugMode) {
-          print('====================================');
+          //   print('====================================');
         }
       }
     });
@@ -110,10 +110,10 @@ class SwapCubit extends Cubit<SwapStates> {
         newProduct.add(ProductModel.fromFireStore(element.data()));
         proID.add(element.id);
         if (kDebugMode) {
-          print(element.data());
+          //  print(element.data());
         }
         if (kDebugMode) {
-          print('====================================');
+          //    print('====================================');
         }
       }
     });
@@ -135,10 +135,10 @@ class SwapCubit extends Cubit<SwapStates> {
         productModel.add(ProductModel.fromFireStore(element.data()));
         pId.add(element.id);
         if (kDebugMode) {
-          print(element.data());
+          //  print(element.data());
         }
         if (kDebugMode) {
-          print('====================================');
+          //   print('====================================');
         }
       }
     });
@@ -201,8 +201,8 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         ads.add(AdsModel.fromFireStore(element.data()));
         iD.add(element.id);
-        // print(element.data());
-        //  print('====================================');
+        print(element.data());
+        print('====================================');
       }
     });
   }
@@ -215,8 +215,8 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         if (element.data()['iD'] == userID) {
           userAds.add(AdsModel.fromFireStore(element.data()));
-          print(element.data());
-          print('====================================');
+          // print(element.data());
+          // print('====================================');
         }
       }
     });
