@@ -47,6 +47,7 @@ class _AddAdsState extends State<AddAds> {
               IconButton(
                 onPressed: () {
                   Navigator.pop(context);
+                  cubit.removePostImage();
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios_new,
@@ -99,8 +100,7 @@ class _AddAdsState extends State<AddAds> {
                               SvgPicture.asset('assets/images/Group 339.svg'),
                             if (adsImage != null)
                               CircleAvatar(
-                                backgroundImage:
-                                    FileImage(adsImage) as ImageProvider,
+                                backgroundImage: FileImage(adsImage),
                                 radius: 45,
                                 backgroundColor: Colors.transparent,
                               ),
@@ -357,15 +357,16 @@ class _AddAdsState extends State<AddAds> {
                     const DSize(height: 50, width: 0),
                     defaultButton(
                       function: () {
-                        if (formKey.currentState?.validate() == true) {
+                        if (formKey.currentState!.validate()) {
                           cubit.uploadAdsImage(
                             name: productController.text,
                             desc: descController.text,
-                            categoryName: dropdownValue1.toString(),
-                            productName: dropdownValue2.toString(),
+                            categoryName: dropdownValue1,
+                            productName: dropdownValue2,
                           );
+                          cubit.removePostImage();
                         }
-                        return null;
+                        return;
                       },
                       widget: Text(
                         'نشر الاعلان',
