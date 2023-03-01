@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:swap_me/model/ads_model.dart';
 import 'package:swap_me/model/arg_model.dart';
 import 'package:swap_me/model/category_model.dart';
 import 'package:swap_me/model/product_model.dart';
@@ -25,7 +26,9 @@ class HomeScreen extends StatelessWidget {
         var cubit = SwapCubit.get(context);
         return Column(
           children: [
-            Expanded(child: buildCategoryItem(context, cubit.product!)),
+            Expanded(
+                child: buildCategoryItem(
+                    context, cubit.product!, cubit.adsModel!)),
           ],
         );
       },
@@ -42,11 +45,12 @@ class HomeScreen extends StatelessWidget {
     });
   }
 
-  Widget buildCategoryItem(BuildContext context, ProductModel productModel) {
+  Widget buildCategoryItem(
+      BuildContext context, ProductModel productModel, AdsModel adsModel) {
     var cubit = SwapCubit.get(context);
     return ListView.separated(
       itemBuilder: (context, index) {
-        return CategoryItem(productModel,
+        return CategoryItem(productModel, adsModel,
             categoryMainModel: cubit.category[index]);
       },
       separatorBuilder: (context, _) {
@@ -59,13 +63,15 @@ class HomeScreen extends StatelessWidget {
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem(
-    this.productModel, {
+    this.productModel,
+    this.adsModel, {
     Key? key,
     required this.categoryMainModel,
   }) : super(key: key);
 
   final CategoryMainModel categoryMainModel;
   final ProductModel productModel;
+  final AdsModel adsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +83,9 @@ class CategoryItem extends StatelessWidget {
           context,
           ProductScreen.routeName,
           arguments: ScreenArgs(
-              productModel: productModel, categoryMainModel: categoryMainModel),
+              productModel: productModel,
+              categoryMainModel: categoryMainModel,
+              adsModel: adsModel),
         );
       },
       child: Container(

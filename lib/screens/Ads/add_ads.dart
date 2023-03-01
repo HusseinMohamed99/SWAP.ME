@@ -158,7 +158,7 @@ class _AddAdsState extends State<AddAds> {
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items: cubit.newProduct.map((e) {
                             return DropdownMenuItem(
-                              value: e,
+                              value: e.name,
                               child: Center(
                                 child: Text(
                                   e.name,
@@ -205,7 +205,7 @@ class _AddAdsState extends State<AddAds> {
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items: cubit.category.map((e) {
                             return DropdownMenuItem(
-                              value: e,
+                              value: e.name,
                               child: Center(
                                 child: Text(
                                   e.name,
@@ -290,7 +290,7 @@ class _AddAdsState extends State<AddAds> {
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items: cubit.newProduct.map((e) {
                             return DropdownMenuItem(
-                              value: e,
+                              value: e.name,
                               child: Center(
                                 child: Text(
                                   e.name,
@@ -336,7 +336,7 @@ class _AddAdsState extends State<AddAds> {
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items: cubit.category.map((e) {
                             return DropdownMenuItem(
-                              value: e,
+                              value: e.name,
                               child: Center(
                                 child: Text(
                                   e.name,
@@ -357,8 +357,10 @@ class _AddAdsState extends State<AddAds> {
                     const DSize(height: 50, width: 0),
                     defaultButton(
                       function: () {
+                        DateTime now = DateTime.now();
                         if (formKey.currentState!.validate()) {
                           cubit.uploadAdsImage(
+                            dateTime: now.toString(),
                             name: productController.text,
                             desc: descController.text,
                             categoryName: dropdownValue1,

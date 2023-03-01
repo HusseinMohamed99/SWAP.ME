@@ -27,6 +27,7 @@ class DefaultTextFormField extends StatelessWidget {
       this.suffixPressed,
       this.suffix,
       this.maxLength,
+      this.read,
       Key? key})
       : super(key: key);
   final BuildContext context;
@@ -40,7 +41,7 @@ class DefaultTextFormField extends StatelessWidget {
   final String? Function(String?) validate;
   final String? hint;
   final String? label;
-  final dynamic onTap;
+  final Function()? onTap;
   final dynamic onChanged;
   final Function(String)? onFieldSubmitted;
   final bool? isPassword;
@@ -52,10 +53,12 @@ class DefaultTextFormField extends StatelessWidget {
   final String? obscuringCharacter;
   final int? maxLength;
   final int? maxLines;
+  final bool? read;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: read ?? false,
       textDirection: TextDirection.rtl,
       maxLength: maxLength,
       focusNode: focusNode,
@@ -67,6 +70,9 @@ class DefaultTextFormField extends StatelessWidget {
         fontSize: 17,
         fontWeight: FontWeight.w400,
       ),
+      onTap: () {
+        onTap!();
+      },
       maxLines: maxLines ?? 1,
       minLines: 1,
       controller: controller,
@@ -80,16 +86,16 @@ class DefaultTextFormField extends StatelessWidget {
         filled: true,
         suffixIcon: suffix != null
             ? IconButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  suffixPressed!();
-                },
-                icon: Icon(
-                  suffix,
-                  color: ThemeApp.greyColor,
-                  size: 24,
-                ),
-              )
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            suffixPressed!();
+          },
+          icon: Icon(
+            suffix,
+            color: ThemeApp.greyColor,
+            size: 24,
+          ),
+        )
             : null,
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(

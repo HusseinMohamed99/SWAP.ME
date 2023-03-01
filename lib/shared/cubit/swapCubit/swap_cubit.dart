@@ -90,7 +90,7 @@ class SwapCubit extends Cubit<SwapStates> {
         category.add(CategoryMainModel.fromFireStore(element.data()));
         cId.add(element.id);
         if (kDebugMode) {
-         // print(element.data());
+          // print(element.data());
         }
         if (kDebugMode) {
           //   print('====================================');
@@ -99,6 +99,7 @@ class SwapCubit extends Cubit<SwapStates> {
     });
   }
 
+  String currentProduct = '';
   List<ProductModel> newProduct = [];
 
   List<String> proID = [];
@@ -207,8 +208,28 @@ class SwapCubit extends Cubit<SwapStates> {
     });
   }
 
+  List<AdsModel> adsNewModel = [];
+  List<String> id = [];
+
+  getADSData(String? pID) async {
+    FirebaseFirestore.instance
+        .collection('ADS')
+        .where('productName', isEqualTo: pID)
+        //.where('categoryName', isEqualTo: cID)
+        .get()
+        .then((value) {
+      adsNewModel = [];
+      for (var element in value.docs) {
+        adsNewModel.add(AdsModel.fromFireStore(element.data()));
+        id.add(element.id);
+        print(element.data());
+        print('====================================');
+      }
+    });
+  }
+
   List<AdsModel> userAds = [];
-  
+
   getMyAdsData(String? userID) async {
     FirebaseFirestore.instance.collection('ADS').get().then((value) {
       userAds = [];
@@ -241,13 +262,35 @@ class SwapCubit extends Cubit<SwapStates> {
   ///START : uploadPostImage
   AdsModel? adsModel;
 
+  void getADsData() {
+    emit(GetPlaceDataLoadingState());
+    FirebaseFirestore.instance
+        .collection('ADS')
+        .doc('kBVi65DB1EfFAYCuADgu')
+        .get()
+        .then((value) {
+      adsModel = AdsModel.fromFireStore(value.data()!);
+      emit(GetPlaceDataSuccessState());
+      if (kDebugMode) {
+        print(value.data());
+      }
+      print('value.id ======== ${value.id}');
+      // print(
+      //     '==============================================================================');
+    }).catchError((error) {
+      debugPrint(error.toString());
+      emit(GetPlaceDataErrorState(error.toString()));
+    });
+  }
+
   void uploadAdsImage({
     required String name,
     String? image,
     String? iD,
     required String desc,
-    required String categoryName,
-    required String productName,
+    required dynamic categoryName,
+    required dynamic productName,
+    required String dateTime,
   }) {
     emit(CreateAdsLoadingState());
     firebase_storage.FirebaseStorage.instance
@@ -263,6 +306,7 @@ class SwapCubit extends Cubit<SwapStates> {
           desc: desc,
           categoryName: categoryName,
           productName: productName,
+          dateTime: dateTime,
         );
 
         emit(CreateAdsSuccessState());
@@ -285,6 +329,7 @@ class SwapCubit extends Cubit<SwapStates> {
     required String desc,
     required String categoryName,
     required String productName,
+    required String dateTime,
   }) {
     emit(CreateAdsLoadingState());
 
@@ -295,6 +340,7 @@ class SwapCubit extends Cubit<SwapStates> {
       desc: desc,
       categoryName: categoryName,
       productName: productName,
+      dateTime: dateTime,
     );
     FirebaseFirestore.instance
         .collection('ADS')

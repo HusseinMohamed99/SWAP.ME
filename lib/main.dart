@@ -8,7 +8,6 @@ import 'package:swap_me/firebase_options.dart';
 import 'package:swap_me/screens/Ads/add_ads.dart';
 import 'package:swap_me/screens/Ads/ads_details.dart';
 import 'package:swap_me/screens/Ads/ads_screen.dart';
-import 'package:swap_me/screens/Ads/ads_screen.dart';
 import 'package:swap_me/screens/Ads/image_details.dart';
 import 'package:swap_me/screens/EmailVerify/email_verify.dart';
 import 'package:swap_me/screens/HomeScreen/home_screen.dart';
@@ -59,6 +58,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SwapCubit()
             ..getUserData()
+            ..getADsData()
             ..getCategoryData()
             ..getProData()
             ..getAdsData()

@@ -1,28 +1,31 @@
 class AdsModel {
   String name;
   String iD;
-  String? image;
+  String image;
   String desc;
-  String categoryName;
-  String productName;
+  dynamic categoryName;
+  dynamic productName;
+  String dateTime;
 
   AdsModel({
     this.iD = '',
     required this.name,
-    this.image,
+    required this.image,
     required this.desc,
     required this.categoryName,
     required this.productName,
+    required this.dateTime,
   });
 
   AdsModel.fromFireStore(Map<String, dynamic> data)
       : this(
-          iD: data['iD'],
+    iD: data['iD'],
           name: data['name'],
           image: data['image'],
           desc: data['desc'],
           categoryName: data['categoryName'],
           productName: data['productName'],
+          dateTime: data['dateTime'],
         );
 
   Map<String, dynamic> toFireStore() {
@@ -33,6 +36,7 @@ class AdsModel {
       'desc': desc,
       'categoryName': categoryName,
       'productName': productName,
+      'dateTime': dateTime,
     };
   }
 }

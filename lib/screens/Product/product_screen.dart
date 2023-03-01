@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swap_me/model/ads_model.dart';
 import 'package:swap_me/model/arg_model.dart';
 import 'package:swap_me/model/category_model.dart';
 import 'package:swap_me/model/product_model.dart';
@@ -59,7 +60,8 @@ class ProductScreen extends StatelessWidget {
               children: [
                 NewList(
                     categoryMainModel: screenArgs.categoryMainModel,
-                    productModel: screenArgs.productModel),
+                    productModel: screenArgs.productModel,
+                    screenArgs.adsModel),
                 defaultButton(
                   function: () {
                     SwapCubit.get(context).getProData();
@@ -86,7 +88,8 @@ class ProductScreen extends StatelessWidget {
 }
 
 class NewList extends StatelessWidget {
-  const NewList({
+  const NewList(
+    this.adsModel, {
     Key? key,
     required this.categoryMainModel,
     required this.productModel,
@@ -94,6 +97,7 @@ class NewList extends StatelessWidget {
 
   final CategoryMainModel categoryMainModel;
   final ProductModel productModel;
+  final AdsModel adsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +109,8 @@ class NewList extends StatelessWidget {
       builder: (context, state) {
         return ListView.separated(
           itemBuilder: (context, index) {
-            return Product(productModel: cubit.productModel[index]);
+            return Product(categoryMainModel, adsModel,
+                productModel: cubit.productModel[index]);
           },
           separatorBuilder: (context, _) {
             return const DSize(height: 20, width: 0);
@@ -118,12 +123,16 @@ class NewList extends StatelessWidget {
 }
 
 class Product extends StatelessWidget {
-  const Product({
+  const Product(
+    this.categoryMainModel,
+    this.adsModel, {
     Key? key,
     required this.productModel,
   }) : super(key: key);
 
   final ProductModel productModel;
+  final CategoryMainModel categoryMainModel;
+  final AdsModel adsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -132,9 +141,23 @@ class Product extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
+        var cubit = SwapCubit.get(context);
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, AdsScreen.routeName);
+            cubit.getADsData();
+            cubit.getADSData(
+              adsModel.productName = productModel.name,
+            );
+            print(adsModel.iD);
+            Navigator.pushNamed(
+              context,
+              AdsScreen.routeName,
+              arguments: ScreenArgs(
+                productModel: productModel,
+                categoryMainModel: categoryMainModel,
+                adsModel: adsModel,
+              ),
+            );
           },
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
@@ -159,8 +182,8 @@ class Product extends StatelessWidget {
                 Text(
                   productModel.name,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        color: ThemeApp.primaryColor,
-                      ),
+                    color: ThemeApp.primaryColor,
+                  ),
                 ),
               ],
             ),
