@@ -70,9 +70,6 @@ class DefaultTextFormField extends StatelessWidget {
         fontSize: 17,
         fontWeight: FontWeight.w400,
       ),
-      onTap: () {
-        onTap!();
-      },
       maxLines: maxLines ?? 1,
       minLines: 1,
       controller: controller,

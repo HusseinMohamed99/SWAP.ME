@@ -44,10 +44,12 @@ class SwapCubit extends Cubit<SwapStates> {
       getCategoryData();
       getProductData(categoryMainModel?.cId);
       getProData();
+      getMyAdsData(userModel?.uId);
     }
     if (index == 1) {}
     if (index == 2) {
-      getMyAdsData(userModel!.uId);
+      getMyAdsData(userModel?.uId);
+      print(uId);
     }
     if (index == 3) {}
 
@@ -74,7 +76,7 @@ class SwapCubit extends Cubit<SwapStates> {
   void showPassword() {
     isPassword = !isPassword;
     suffix =
-    isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(ShowPasswordState());
   }

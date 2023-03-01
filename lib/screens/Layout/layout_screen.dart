@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -62,7 +63,7 @@ class LayoutScreen extends StatelessWidget {
             child: const Icon(Icons.add),
           ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          FloatingActionButtonLocation.centerDocked,
           body: cubit.screens[cubit.currentIndex],
           bottomNavigationBar: BottomAppBar(
             color: Colors.white,
@@ -77,24 +78,21 @@ class LayoutScreen extends StatelessWidget {
               onTap: (index) {
                 cubit.changeBottomNav(index);
               },
-              items: [
+              items: const [
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                      'assets/images/Huge-icon-smart house-outline-home 2.svg'),
+                  icon: ImageIcon(AssetImage('assets/images/home.png')),
                   label: 'الرئيسية',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                      'assets/images/Huge-icon-device-outline-notification.svg'),
+                  icon: ImageIcon(AssetImage('assets/images/bell.png')),
                   label: 'تنبيهاتى',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset('assets/images/Group 296.svg'),
+                  icon: ImageIcon(AssetImage('assets/images/tablet.png')),
                   label: 'إعلاناتى',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                      'assets/images/Huge-icon-user-outline-user.svg'),
+                  icon: ImageIcon(AssetImage('assets/images/user.png')),
                   label: 'حسابى',
                 ),
               ],
@@ -111,6 +109,8 @@ class LayoutScreen extends StatelessWidget {
     ).then((value) {
       if (value) {
         navigateAndFinish(context, routeName: OnBoardingScreen.routeName);
+        FirebaseAuth.instance.signOut();
+        SwapCubit.get(context).changeBottomNav(0);
       }
     });
   }

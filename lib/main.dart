@@ -61,8 +61,7 @@ class MyApp extends StatelessWidget {
             ..getADsData()
             ..getCategoryData()
             ..getProData()
-            ..getAdsData()
-            ..getMyAdsData(uId),
+            ..getAdsData(),
         ),
       ],
       child: BlocConsumer<SwapCubit, SwapStates>(

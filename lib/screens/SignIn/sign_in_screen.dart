@@ -39,6 +39,7 @@ class SignInScreen extends StatelessWidget {
               uId = state.uid;
 
               SwapCubit.get(context).getUserData();
+              SwapCubit.get(context).getMyAdsData(uId);
               navigateAndFinish(context, routeName: LayoutScreen.routeName);
             });
           } else if (state is SignInErrorState) {
