@@ -107,7 +107,15 @@ class ADS extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, AdsDetails.routeName);
+              Navigator.pushNamed(
+                context,
+                AdsDetails.routeName,
+                arguments: ScreenArgs(
+                  adsModel: adsModel,
+                  productModel: productModel,
+                  categoryMainModel: categoryMainModel,
+                ),
+              );
             },
             child: Column(
               children: [
@@ -127,6 +135,7 @@ class ADS extends StatelessWidget {
                               adsModel.image,
                               width: 105,
                               fit: BoxFit.fill,
+                              height: 200,
                             )),
                       ),
                       Expanded(

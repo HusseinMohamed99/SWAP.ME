@@ -144,10 +144,10 @@ class Product extends StatelessWidget {
         var cubit = SwapCubit.get(context);
         return InkWell(
           onTap: () {
-            cubit.getADsData();
             cubit.getADSData(
               adsModel.productName = productModel.name,
             );
+            cubit.getADsData();
             print(adsModel.iD);
             Navigator.pushNamed(
               context,

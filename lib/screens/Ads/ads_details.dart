@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swap_me/model/arg_model.dart';
 import 'package:swap_me/screens/Ads/image_details.dart';
 import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/my_divider.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
+import 'package:swap_me/shared/constants/constants.dart';
+import 'package:swap_me/shared/cubit/swapCubit/swap_cubit.dart';
 import 'package:swap_me/shared/styles/theme.dart';
 
 class AdsDetails extends StatelessWidget {
@@ -15,6 +18,8 @@ class AdsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenArgs screenArgs =
+        ModalRoute.of(context)!.settings.arguments as ScreenArgs;
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -30,18 +35,27 @@ class AdsDetails extends StatelessWidget {
                         CarouselSlider(
                           items: List.generate(
                             3,
-                            (index) => Padding(
+                                (index) => Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, ImageDetails.routeName);
+                                    context,
+                                    ImageDetails.routeName,
+                                    arguments: ScreenArgs(
+                                      adsModel: screenArgs.adsModel,
+                                      productModel: screenArgs.productModel,
+                                      categoryMainModel:
+                                          screenArgs.categoryMainModel,
+                                    ),
+                                  );
                                 },
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      'assets/images/55.png',
+                                    child: Image.network(
+                                      screenArgs.adsModel.image,
                                       width: 105,
+                                      fit: BoxFit.fill,
                                     )),
                               ),
                             ),
@@ -84,7 +98,7 @@ class AdsDetails extends StatelessWidget {
                               ),
                               const DSize(height: 0, width: 40),
                               Text(
-                                'الملابس ومستحضرات التجميل',
+                                screenArgs.adsModel.categoryName,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -107,7 +121,7 @@ class AdsDetails extends StatelessWidget {
                               ),
                               const DSize(height: 0, width: 40),
                               Text(
-                                'ملابس رجالي',
+                                screenArgs.adsModel.productName,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -133,7 +147,7 @@ class AdsDetails extends StatelessWidget {
                               ),
                               const DSize(height: 2, width: 0),
                               Text(
-                                'قميص ليفايس اوريجنال صناعه امريكي مقاس ',
+                                screenArgs.adsModel.desc,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
@@ -169,7 +183,7 @@ class AdsDetails extends StatelessWidget {
                   left: 18,
                   right: 18,
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     height: 240,
                     width: 392,
                     decoration: BoxDecoration(
@@ -182,8 +196,8 @@ class AdsDetails extends StatelessWidget {
                         Container(
                           width: 47,
                           height: 27,
-                          margin: EdgeInsets.symmetric(horizontal: 3),
-                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 3),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.rectangle,
@@ -195,7 +209,7 @@ class AdsDetails extends StatelessWidget {
                                 Icons.remove_red_eye_outlined,
                                 color: ThemeApp.greyColor,
                               ),
-                              DSize(height: 0, width: 5),
+                              const DSize(height: 0, width: 5),
                               Text(
                                 '5',
                                 style: GoogleFonts.cairo(
@@ -214,7 +228,7 @@ class AdsDetails extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Levis shirt For men,s Original',
+                                screenArgs.adsModel.name,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.cairo(
                                   fontSize: 17,
@@ -230,7 +244,7 @@ class AdsDetails extends StatelessWidget {
                                   ),
                                   const DSize(height: 0, width: 5),
                                   Text(
-                                    'Cairo',
+                                    'منذ ${daysBetween(DateTime.parse(screenArgs.adsModel.dateTime.toString()))}',
                                     style: GoogleFonts.cairo(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400,
@@ -242,27 +256,27 @@ class AdsDetails extends StatelessWidget {
                             ],
                           ),
                         ),
-                        MyDivider(),
+                        const MyDivider(),
                         Row(
                           children: [
                             SvgPicture.asset('assets/images/Group 517.svg'),
-                            DSize(height: 0, width: 30),
+                            const DSize(height: 0, width: 30),
                             Text(
-                              'USER NAME'.toUpperCase(),
+                              '${SwapCubit.get(context).userModel!.firstName.toUpperCase()}  ${SwapCubit.get(context).userModel!.lastName.toUpperCase()}',
                               style: GoogleFonts.cairo(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
                                 color: ThemeApp.secondaryColor,
                               ),
                             ),
-                            DSize(height: 0, width: 23),
-                            MyDivider(
+                            const DSize(height: 0, width: 23),
+                            const MyDivider(
                               width: 1,
                               height: 30,
                             ),
-                            DSize(height: 0, width: 23),
+                            const DSize(height: 0, width: 23),
                             Text(
-                              '010123456789',
+                              SwapCubit.get(context).userModel!.phone,
                               style: GoogleFonts.cairo(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13,
@@ -271,14 +285,14 @@ class AdsDetails extends StatelessWidget {
                             ),
                           ],
                         ),
-                        MyDivider(),
+                        const MyDivider(),
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               FontAwesomeIcons.locationDot,
                               color: ThemeApp.secondaryColor,
                             ),
-                            DSize(height: 0, width: 30),
+                            const DSize(height: 0, width: 30),
                             Text(
                               'القاهره ،مصر',
                               style: GoogleFonts.cairo(
@@ -287,17 +301,17 @@ class AdsDetails extends StatelessWidget {
                                 color: ThemeApp.secondaryColor,
                               ),
                             ),
-                            DSize(height: 0, width: 23),
-                            MyDivider(
+                            const DSize(height: 0, width: 23),
+                            const MyDivider(
                               width: 1,
                               height: 30,
                             ),
-                            DSize(height: 0, width: 23),
-                            Icon(
+                            const DSize(height: 0, width: 23),
+                            const Icon(
                               Icons.star,
                               color: ThemeApp.secondaryColor,
                             ),
-                            DSize(height: 0, width: 8),
+                            const DSize(height: 0, width: 8),
                             Text(
                               'تقييم (0.0)',
                               style: GoogleFonts.cairo(
@@ -340,16 +354,16 @@ class AdsDetails extends StatelessWidget {
                   left: 180,
 
                   child: Container(
-                    margin: EdgeInsets.all(8),
-                    padding: EdgeInsets.symmetric(horizontal: 4),
+                    margin: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
-                      children: [
-                        const Icon(
+                      children: const [
+                        Icon(
                           Icons.camera_alt,
                           color: ThemeApp.primaryColor,
                         ),
@@ -415,5 +429,14 @@ class AdsDetails extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class AdsDetailsScreen extends StatelessWidget {
+  const AdsDetailsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
