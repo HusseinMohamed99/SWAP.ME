@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
           if (state is UserCreateSuccessState) {
             showToast(
               text: 'تم إنشاء حسابك بنجاح',
-              state: ToastStates.error,
+              state: ToastStates.success,
             );
             CacheHelper.saveData(value: state.uid, key: 'uId').then((value) {
               uId = state.uid;

@@ -8,6 +8,7 @@ import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/my_divider.dart';
 import 'package:swap_me/shared/components/sized_box.dart';
 import 'package:swap_me/shared/components/text_form_field.dart';
+import 'package:swap_me/shared/components/toast.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_cubit.dart';
 import 'package:swap_me/shared/cubit/swapCubit/swap_state.dart';
 import 'package:swap_me/shared/styles/theme.dart';
@@ -33,7 +34,13 @@ class _AddAdsState extends State<AddAds> {
     var descController = TextEditingController();
     return BlocConsumer<SwapCubit, SwapStates>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is CreateAdsSuccessState) {
+          showToast(text: 'تم إنشاء إعلانك بنجاح', state: ToastStates.success);
+        }
+        if (state is CreateAdsErrorState) {
+          showToast(
+              text: 'تأكد من مراجعة بعض البيانات', state: ToastStates.error);
+        }
       },
       builder: (context, state) {
         var cubit = SwapCubit.get(context);
@@ -66,7 +73,7 @@ class _AddAdsState extends State<AddAds> {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -131,96 +138,101 @@ class _AddAdsState extends State<AddAds> {
                       hint: 'اسم المنتج',
                     ),
                     const DSize(height: 16, width: 0),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: ThemeApp.greyColor),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          iconSize: 20,
-                          hint: Text(
+                    Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: ThemeApp.greyColor,
+                          )),
+                      alignment: Alignment.center,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        iconSize: 20,
+                        hint: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
                             'اختر الفئه',
                             style: GoogleFonts.cairo(
+                              locale: const Locale('en'),
                               color: ThemeApp.greyColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              height: 1,
+                              fontSize: 17,
                             ),
                           ),
-                          underline: const Divider(
-                            color: ThemeApp.secondaryColor,
-                          ),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: cubit.newProduct.map((e) {
-                            return DropdownMenuItem(
-                              value: e.name,
-                              child: Center(
-                                child: Text(
-                                  e.name,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              dropdownValue1 = newValue;
-                            });
-                          },
-                          value: dropdownValue1,
                         ),
+                        underline: const Divider(
+                          color: ThemeApp.secondaryColor,
+                        ),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: cubit.newProduct.map((e) {
+                          return DropdownMenuItem(
+                            value: e.name,
+                            child: Center(
+                              child: Text(
+                                e.name,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            dropdownValue1 = newValue;
+                          });
+                        },
+                        value: dropdownValue1,
                       ),
                     ),
                     const DSize(height: 16, width: 0),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(color: ThemeApp.greyColor),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          iconSize: 20,
-                          hint: Text(
+                    Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: ThemeApp.greyColor,
+                          )),
+                      alignment: Alignment.center,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        iconSize: 20,
+                        hint: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
                             'اختر القسم',
                             style: GoogleFonts.cairo(
                               color: ThemeApp.greyColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: 17,
+                              height: 1,
+                              locale: const Locale('en'),
                             ),
                           ),
-                          underline: const Divider(
-                            color: ThemeApp.secondaryColor,
-                          ),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: cubit.category.map((e) {
-                            return DropdownMenuItem(
-                              value: e.name,
-                              child: Center(
-                                child: Text(
-                                  e.name,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              dropdownValue2 = newValue;
-                            });
-                          },
-                          value: dropdownValue2,
                         ),
+                        underline: const Divider(
+                          color: ThemeApp.secondaryColor,
+                        ),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: cubit.category.map((e) {
+                          return DropdownMenuItem(
+                            value: e.name,
+                            child: Center(
+                              child: Text(
+                                e.name,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            dropdownValue2 = newValue;
+                          });
+                        },
+                        value: dropdownValue2,
                       ),
                     ),
                     const DSize(height: 16, width: 0),
@@ -263,98 +275,104 @@ class _AddAdsState extends State<AddAds> {
                       ),
                     ),
                     const DSize(height: 16, width: 0),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: ThemeApp.greyColor),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          iconSize: 20,
-                          hint: Text(
+                    Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: ThemeApp.greyColor,
+                          )),
+                      alignment: Alignment.center,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        iconSize: 20,
+                        hint: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
                             'اختر الفئه للمقايضه معه',
                             style: GoogleFonts.cairo(
                               color: ThemeApp.greyColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              height: 1,
+                              locale: const Locale('en'),
+                              fontSize: 17,
                             ),
                           ),
-                          underline: const Divider(
-                            color: ThemeApp.secondaryColor,
-                          ),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: cubit.newProduct.map((e) {
-                            return DropdownMenuItem(
-                              value: e.name,
-                              child: Center(
-                                child: Text(
-                                  e.name,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              dropdownValue3 = newValue;
-                            });
-                          },
-                          value: dropdownValue3,
                         ),
+                        underline: const Divider(
+                          color: ThemeApp.secondaryColor,
+                        ),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: cubit.newProduct.map((e) {
+                          return DropdownMenuItem(
+                            value: e.name,
+                            child: Center(
+                              child: Text(
+                                e.name,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            dropdownValue3 = newValue;
+                          });
+                        },
+                        value: dropdownValue3,
                       ),
                     ),
                     const DSize(height: 16, width: 0),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: ThemeApp.greyColor),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          iconSize: 20,
-                          hint: Text(
+                    Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: ThemeApp.greyColor,
+                          )),
+                      alignment: Alignment.center,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        iconSize: 20,
+                        hint: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
                             'اختر القسم',
                             style: GoogleFonts.cairo(
                               color: ThemeApp.greyColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              height: 1,
+                              locale: const Locale('en'),
+                              fontSize: 17,
                             ),
                           ),
-                          underline: const Divider(
-                            color: ThemeApp.secondaryColor,
-                          ),
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: cubit.category.map((e) {
-                            return DropdownMenuItem(
-                              value: e.name,
-                              child: Center(
-                                child: Text(
-                                  e.name,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              dropdownValue4 = newValue;
-                            });
-                          },
-                          value: dropdownValue4,
                         ),
+                        underline: const Divider(
+                          color: ThemeApp.secondaryColor,
+                        ),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: cubit.category.map((e) {
+                          return DropdownMenuItem(
+                            value: e.name,
+                            child: Center(
+                              child: Text(
+                                e.name,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            dropdownValue4 = newValue;
+                          });
+                        },
+                        value: dropdownValue4,
                       ),
                     ),
-                    const DSize(height: 50, width: 0),
+                    const DSize(height: 20, width: 0),
                     defaultButton(
                       function: () {
                         DateTime now = DateTime.now();
@@ -367,6 +385,7 @@ class _AddAdsState extends State<AddAds> {
                             productName: dropdownValue2,
                           );
                           cubit.removePostImage();
+                          Navigator.pop(context);
                         }
                         return;
                       },

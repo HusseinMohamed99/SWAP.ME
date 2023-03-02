@@ -37,7 +37,6 @@ class SwapCubit extends Cubit<SwapStates> {
     'حسابى',
   ];
 
-  //---------------------  Change Bottom Navigation Bar IN Home_Screen  --------------------------------//
   void changeBottomNav(int index) {
     currentIndex = index;
     if (index == 0) {
@@ -49,7 +48,6 @@ class SwapCubit extends Cubit<SwapStates> {
     if (index == 1) {}
     if (index == 2) {
       getMyAdsData(userModel?.uId);
-      print(uId);
     }
     if (index == 3) {}
 
@@ -69,7 +67,6 @@ class SwapCubit extends Cubit<SwapStates> {
     });
   }
 
-  ///START : Show Password
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
@@ -91,17 +88,10 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         category.add(CategoryMainModel.fromFireStore(element.data()));
         cId.add(element.id);
-        if (kDebugMode) {
-          // print(element.data());
-        }
-        if (kDebugMode) {
-          //   print('====================================');
-        }
       }
     });
   }
 
-  String currentProduct = '';
   List<ProductModel> newProduct = [];
 
   List<String> proID = [];
@@ -112,12 +102,6 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         newProduct.add(ProductModel.fromFireStore(element.data()));
         proID.add(element.id);
-        if (kDebugMode) {
-          //  print(element.data());
-        }
-        if (kDebugMode) {
-          //    print('====================================');
-        }
       }
     });
   }
@@ -137,12 +121,6 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         productModel.add(ProductModel.fromFireStore(element.data()));
         pId.add(element.id);
-        if (kDebugMode) {
-          //  print(element.data());
-        }
-        if (kDebugMode) {
-          //   print('====================================');
-        }
       }
     });
   }
@@ -150,7 +128,7 @@ class SwapCubit extends Cubit<SwapStates> {
   ProductModel? product;
 
   void getProData() {
-    emit(GetPlaceDataLoadingState());
+    emit(GetProDataLoadingState());
     FirebaseFirestore.instance
         .collection('categoryMain')
         .doc('1.Colthes')
@@ -159,39 +137,33 @@ class SwapCubit extends Cubit<SwapStates> {
         .get()
         .then((value) {
       product = ProductModel.fromFireStore(value.data()!);
-      emit(GetPlaceDataSuccessState());
+      emit(GetProDataSuccessState());
       if (kDebugMode) {
         print(value.data());
       }
-      // print('value.id ======== ${value.id}');
-      // print(
-      //     '==============================================================================');
     }).catchError((error) {
       debugPrint(error.toString());
-      emit(GetPlaceDataErrorState(error.toString()));
+      emit(GetProDataErrorState(error.toString()));
     });
   }
 
   CategoryMainModel? categoryMainModel;
 
   void getData(String? cId) {
-    //emit(GetPlaceDataLoadingState());
+    emit(GetDataLoadingState());
     FirebaseFirestore.instance
         .collection('categoryMain')
         .doc(cId)
         .get()
         .then((value) {
       categoryMainModel = CategoryMainModel.fromFireStore(value.data()!);
-      // emit(GetPlaceDataSuccessState());
+      emit(GetDataSuccessState());
       if (kDebugMode) {
         print(value.data());
       }
-      // print('value.id ======== ${value.id}');
-      // print(
-      //     '==============================================================================');
     }).catchError((error) {
       debugPrint(error.toString());
-      //  emit(GetPlaceDataErrorState(error.toString()));
+      emit(GetDataErrorState(error.toString()));
     });
   }
 
@@ -204,8 +176,6 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         ads.add(AdsModel.fromFireStore(element.data()));
         iD.add(element.id);
-        print(element.data());
-        print('====================================');
       }
     });
   }
@@ -217,15 +187,12 @@ class SwapCubit extends Cubit<SwapStates> {
     FirebaseFirestore.instance
         .collection('ADS')
         .where('productName', isEqualTo: pID)
-        //.where('categoryName', isEqualTo: cID)
         .get()
         .then((value) {
       adsNewModel = [];
       for (var element in value.docs) {
         adsNewModel.add(AdsModel.fromFireStore(element.data()));
         id.add(element.id);
-        print(element.data());
-        print('====================================');
       }
     });
   }
@@ -238,8 +205,6 @@ class SwapCubit extends Cubit<SwapStates> {
       for (var element in value.docs) {
         if (element.data()['iD'] == userID) {
           userAds.add(AdsModel.fromFireStore(element.data()));
-          // print(element.data());
-          // print('====================================');
         }
       }
     });
@@ -259,29 +224,20 @@ class SwapCubit extends Cubit<SwapStates> {
     }
   }
 
-  ///END : GetPostImage
-  // ----------------------------------------------------------//
-  ///START : uploadPostImage
   AdsModel? adsModel;
 
   void getADsData() {
-    emit(GetPlaceDataLoadingState());
+    emit(GetProductDataLoadingState());
     FirebaseFirestore.instance
         .collection('ADS')
         .doc('kBVi65DB1EfFAYCuADgu')
         .get()
         .then((value) {
       adsModel = AdsModel.fromFireStore(value.data()!);
-      emit(GetPlaceDataSuccessState());
-      if (kDebugMode) {
-        print(value.data());
-      }
-      print('value.id ======== ${value.id}');
-      // print(
-      //     '==============================================================================');
+      emit(GetProductDataSuccessState());
     }).catchError((error) {
       debugPrint(error.toString());
-      emit(GetPlaceDataErrorState(error.toString()));
+      emit(GetProductDataErrorState(error.toString()));
     });
   }
 
@@ -320,10 +276,6 @@ class SwapCubit extends Cubit<SwapStates> {
     });
   }
 
-  ///END : uploadPostImage
-// ----------------------------------------------------------//
-
-  ///START : CreatePost
   void createAds({
     required String name,
     String? image,
@@ -354,15 +306,9 @@ class SwapCubit extends Cubit<SwapStates> {
     });
   }
 
-  ///END : CreatePost
-// ----------------------------------------------------------//
-
-  ///START : RemovePostImage
   void removePostImage() {
     adsImagePicked = null;
 
     emit(RemoveAdsImageSuccessState());
   }
-
-  ///END : RemovePostImage
 }

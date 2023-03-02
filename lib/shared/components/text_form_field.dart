@@ -103,7 +103,7 @@ class DefaultTextFormField extends StatelessWidget {
           ),
         ),
         hintText: hint,
-        hintStyle: const TextStyle(
+        hintStyle: GoogleFonts.cairo(
           locale: Locale('en'),
           color: ThemeApp.greyColor,
           height: 1,

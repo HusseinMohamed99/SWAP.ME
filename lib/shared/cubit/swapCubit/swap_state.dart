@@ -14,14 +14,34 @@ class ShowPasswordState extends SwapStates {}
 
 class ChangeBottomNavBarState extends SwapStates {}
 
-class GetPlaceDataLoadingState extends SwapStates {}
+class GetProDataLoadingState extends SwapStates {}
 
-class GetPlaceDataSuccessState extends SwapStates {}
+class GetProDataSuccessState extends SwapStates {}
 
-class GetPlaceDataErrorState extends SwapStates {
+class GetProDataErrorState extends SwapStates {
   final String error;
 
-  GetPlaceDataErrorState(this.error);
+  GetProDataErrorState(this.error);
+}
+
+class GetDataLoadingState extends SwapStates {}
+
+class GetDataSuccessState extends SwapStates {}
+
+class GetDataErrorState extends SwapStates {
+  final String error;
+
+  GetDataErrorState(this.error);
+}
+
+class GetProductDataLoadingState extends SwapStates {}
+
+class GetProductDataSuccessState extends SwapStates {}
+
+class GetProductDataErrorState extends SwapStates {
+  final String error;
+
+  GetProductDataErrorState(this.error);
 }
 
 class GetAdsImagePickedSuccessState extends SwapStates {}

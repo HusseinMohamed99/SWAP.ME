@@ -27,8 +27,9 @@ class HomeScreen extends StatelessWidget {
         return Column(
           children: [
             Expanded(
-                child: buildCategoryItem(
-                    context, cubit.product!, cubit.adsModel!)),
+              child:
+                  buildCategoryItem(context, cubit.product!, cubit.adsModel!),
+            ),
           ],
         );
       },
