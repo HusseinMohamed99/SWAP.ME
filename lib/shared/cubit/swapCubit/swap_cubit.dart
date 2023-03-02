@@ -186,7 +186,7 @@ class SwapCubit extends Cubit<SwapStates> {
   getADSData(String? pID) async {
     FirebaseFirestore.instance
         .collection('ADS')
-        .where('productName', isEqualTo: pID)
+        .where('categoryName', isEqualTo: pID)
         .get()
         .then((value) {
       adsNewModel = [];

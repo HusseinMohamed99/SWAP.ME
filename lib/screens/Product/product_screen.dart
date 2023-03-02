@@ -107,15 +107,22 @@ class NewList extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return ListView.separated(
-          itemBuilder: (context, index) {
-            return Product(categoryMainModel, adsModel,
-                productModel: cubit.productModel[index]);
-          },
-          separatorBuilder: (context, _) {
-            return const DSize(height: 20, width: 0);
-          },
-          itemCount: cubit.productModel.length,
+        return Column(
+          children: [
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return Product(categoryMainModel, adsModel,
+                      productModel: cubit.productModel[index]);
+                },
+                separatorBuilder: (context, _) {
+                  return const DSize(height: 20, width: 0);
+                },
+                itemCount: cubit.productModel.length,
+              ),
+            ),
+            const DSize(height: 60, width: 0),
+          ],
         );
       },
     );
@@ -145,10 +152,12 @@ class Product extends StatelessWidget {
         return InkWell(
           onTap: () {
             cubit.getADSData(
-              adsModel.productName = productModel.name,
+              adsModel.categoryName = productModel.name,
             );
             cubit.getADsData();
             print(adsModel.iD);
+            print(adsModel.categoryName);
+            print(productModel.name);
             Navigator.pushNamed(
               context,
               AdsScreen.routeName,

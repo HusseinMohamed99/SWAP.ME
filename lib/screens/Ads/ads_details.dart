@@ -96,9 +96,9 @@ class AdsDetails extends StatelessWidget {
                                   color: ThemeApp.greyColor,
                                 ),
                               ),
-                              const DSize(height: 0, width: 40),
+                              const DSize(height: 0, width: 50),
                               Text(
-                                screenArgs.adsModel.categoryName,
+                                screenArgs.adsModel.productName,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -121,7 +121,7 @@ class AdsDetails extends StatelessWidget {
                               ),
                               const DSize(height: 0, width: 40),
                               Text(
-                                screenArgs.adsModel.productName,
+                                screenArgs.adsModel.categoryName,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -429,14 +429,5 @@ class AdsDetails extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class AdsDetailsScreen extends StatelessWidget {
-  const AdsDetailsScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
