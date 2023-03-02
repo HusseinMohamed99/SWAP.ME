@@ -42,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
               uId = state.uid;
               Navigator.pushReplacementNamed(context, EmailVerify.routeName);
             });
-          } else if (state is UserCreateErrorState) {
+          } else if (state is SignUpErrorState) {
             showToast(
               text: state.error,
               state: ToastStates.error,
@@ -98,6 +98,7 @@ class SignUpScreen extends StatelessWidget {
                         },
                         hint: 'الاسم الاول',
                         suffix: Icons.supervised_user_circle_sharp,
+                        suffixPressed: () {},
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -128,6 +129,7 @@ class SignUpScreen extends StatelessWidget {
                         },
                         hint: 'البريد الالكتروني',
                         suffix: Icons.alternate_email_outlined,
+                        suffixPressed: () {},
                       ),
                       const DSize(width: 0, height: 26),
                       DefaultTextFormField(
@@ -219,6 +221,7 @@ class SignUpScreen extends StatelessWidget {
                         },
                         suffix: Icons.phone,
                         hint: 'ادخل رقم الهاتف',
+                        suffixPressed: () {},
                       ),
                       const DSize(width: 0, height: 26),
                       defaultMaterialButton(
@@ -235,6 +238,9 @@ class SignUpScreen extends StatelessWidget {
                               passwordController.clear();
                               firstnameController.clear();
                               lastnameController.clear();
+                              confirmPasswordController.clear();
+                              phoneController.clear();
+                              dateTimeController.clear();
                             }
                           },
                           text: 'تسجيل الدخول',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swap_me/screens/HomeScreen/home_screen.dart';
+import 'package:swap_me/screens/Layout/layout_screen.dart';
 import 'package:swap_me/screens/Password/forgot_password.dart';
 import 'package:swap_me/shared/components/buttons.dart';
 import 'package:swap_me/shared/components/navigator.dart';
@@ -25,7 +25,7 @@ class EmailVerify extends StatelessWidget {
           if (state is SendVerificationSuccessState) {
             showToast(
               text: 'تم إرسال إيميل تأكيد حسابك',
-              state: ToastStates.error,
+              state: ToastStates.success,
             );
           } else if (state is SendVerificationErrorState) {
             showToast(
@@ -111,7 +111,7 @@ class EmailVerify extends StatelessWidget {
                             if (cubit.isEmailVerified) {
                               navigateAndFinish(
                                 context,
-                                routeName: HomeScreen.routeName,
+                                routeName: LayoutScreen.routeName,
                               );
                             } else {}
                           },
