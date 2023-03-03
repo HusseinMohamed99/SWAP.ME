@@ -76,54 +76,59 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        SwapCubit.get(context).getProData();
-        SwapCubit.get(context).getProductData(categoryMainModel.cId);
-        Navigator.pushNamed(
-          context,
-          ProductScreen.routeName,
-          arguments: ScreenArgs(
-              productModel: productModel,
-              categoryMainModel: categoryMainModel,
-              adsModel: adsModel),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        width: double.infinity,
-        height: 90,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            if (categoryMainModel.image.isEmpty)
-              const CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 60,
-                child: Icon(FontAwesomeIcons.info),
-              ),
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 60,
-              child: Image.network(categoryMainModel.image),
-            ),
-            Text(
-              categoryMainModel.name,
-              style: Theme.of(context).textTheme.subtitle1?.copyWith(
+    return BlocConsumer<SwapCubit, SwapStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return InkWell(
+          onTap: () {
+            SwapCubit.get(context).getProData();
+            SwapCubit.get(context).getProductData(categoryMainModel.cId);
+            Navigator.pushNamed(
+              context,
+              ProductScreen.routeName,
+              arguments: ScreenArgs(
+                  productModel: productModel,
+                  categoryMainModel: categoryMainModel,
+                  adsModel: adsModel),
+            );
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            width: double.infinity,
+            height: 90,
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (categoryMainModel.image.isEmpty)
+                  const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 60,
+                    child: Icon(FontAwesomeIcons.info),
+                  ),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 60,
+                  child: Image.network(categoryMainModel.image),
+                ),
+                Text(
+                  categoryMainModel.name,
+                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        color: ThemeApp.primaryColor,
+                      ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new,
                     color: ThemeApp.primaryColor,
                   ),
+                ),
+              ],
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: ThemeApp.primaryColor,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

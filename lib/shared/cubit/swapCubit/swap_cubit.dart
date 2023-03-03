@@ -83,9 +83,12 @@ class SwapCubit extends Cubit<SwapStates> {
   List<String> cId = [];
 
   getCategoryData() {
-    FirebaseFirestore.instance.collection('categoryMain').get().then((value) {
+    FirebaseFirestore.instance
+        .collection('categoryMain')
+        .snapshots()
+        .listen((event) {
       category = [];
-      for (var element in value.docs) {
+      for (var element in event.docs) {
         category.add(CategoryMainModel.fromFireStore(element.data()));
         cId.add(element.id);
       }
