@@ -148,7 +148,9 @@ class _AddAdsState extends State<AddAds> {
                             color: ThemeApp.greyColor,
                           )),
                       alignment: Alignment.center,
-                      child: DropdownButton(
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) =>
+                            value == null ? 'برجاء إدخال الحقل' : null,
                         isExpanded: true,
                         iconSize: 20,
                         hint: Padding(
@@ -162,9 +164,6 @@ class _AddAdsState extends State<AddAds> {
                               fontSize: 17,
                             ),
                           ),
-                        ),
-                        underline: const Divider(
-                          color: ThemeApp.secondaryColor,
                         ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: cubit.newProduct.map((e) {
@@ -197,7 +196,9 @@ class _AddAdsState extends State<AddAds> {
                             color: ThemeApp.greyColor,
                           )),
                       alignment: Alignment.center,
-                      child: DropdownButton(
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) =>
+                            value == null ? 'برجاء إدخال الحقل' : null,
                         isExpanded: true,
                         iconSize: 20,
                         hint: Padding(
@@ -211,9 +212,6 @@ class _AddAdsState extends State<AddAds> {
                               locale: const Locale('en'),
                             ),
                           ),
-                        ),
-                        underline: const Divider(
-                          color: ThemeApp.secondaryColor,
                         ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: cubit.category.map((e) {
@@ -285,7 +283,9 @@ class _AddAdsState extends State<AddAds> {
                             color: ThemeApp.greyColor,
                           )),
                       alignment: Alignment.center,
-                      child: DropdownButton(
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) =>
+                            value == null ? 'برجاء إدخال الحقل' : null,
                         isExpanded: true,
                         iconSize: 20,
                         hint: Padding(
@@ -299,9 +299,6 @@ class _AddAdsState extends State<AddAds> {
                               fontSize: 17,
                             ),
                           ),
-                        ),
-                        underline: const Divider(
-                          color: ThemeApp.secondaryColor,
                         ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: cubit.newProduct.map((e) {
@@ -334,7 +331,9 @@ class _AddAdsState extends State<AddAds> {
                             color: ThemeApp.greyColor,
                           )),
                       alignment: Alignment.center,
-                      child: DropdownButton(
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) =>
+                            value == null ? 'برجاء إدخال الحقل' : null,
                         isExpanded: true,
                         iconSize: 20,
                         hint: Padding(
@@ -348,9 +347,6 @@ class _AddAdsState extends State<AddAds> {
                               fontSize: 17,
                             ),
                           ),
-                        ),
-                        underline: const Divider(
-                          color: ThemeApp.secondaryColor,
                         ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: cubit.category.map((e) {
