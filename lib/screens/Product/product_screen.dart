@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -155,9 +156,15 @@ class Product extends StatelessWidget {
               adsModel.categoryName = productModel.name,
             );
             cubit.getADsData();
-            print(adsModel.iD);
-            print(adsModel.categoryName);
-            print(productModel.name);
+            if (kDebugMode) {
+              print(adsModel.iD);
+            }
+            if (kDebugMode) {
+              print(adsModel.categoryName);
+            }
+            if (kDebugMode) {
+              print(productModel.name);
+            }
             Navigator.pushNamed(
               context,
               AdsScreen.routeName,
@@ -190,9 +197,9 @@ class Product extends StatelessWidget {
                 const DSize(height: 0, width: 60),
                 Text(
                   productModel.name,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: ThemeApp.primaryColor,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: ThemeApp.primaryColor,
+                      ),
                 ),
               ],
             ),

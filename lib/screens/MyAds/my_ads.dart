@@ -248,11 +248,11 @@ class MyAdsScreen extends StatelessWidget {
                       ),
                     ),
                     const MyDivider(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.star_border,
                             color: ThemeApp.primaryColor,

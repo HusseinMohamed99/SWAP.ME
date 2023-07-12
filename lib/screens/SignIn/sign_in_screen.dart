@@ -73,12 +73,12 @@ class SignInScreen extends StatelessWidget {
                       const DSize(height: 100, width: 0),
                       Text(
                         'تسجيل الدخول',
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.displayMedium,
                       ),
                       const DSize(height: 36, width: 0),
                       Text(
                         'الرجاء إدخال البيانات الخاصة بك لتسجيل الدخول إلى حسابك',
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const DSize(width: 0, height: 67),
                       DefaultTextFormField(

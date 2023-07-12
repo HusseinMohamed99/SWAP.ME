@@ -26,41 +26,41 @@ class ThemeApp {
     scaffoldBackgroundColor: backgroundColor,
     cardColor: secondaryColor,
     textTheme: TextTheme(
-      headline1: GoogleFonts.cairo(
+      displayLarge: GoogleFonts.cairo(
         fontSize: 36,
         fontWeight: FontWeight.bold,
         color: blackPrimary,
       ),
-      headline2: GoogleFonts.cairo(
+      displayMedium: GoogleFonts.cairo(
         fontSize: 25,
         color: primaryColor,
         fontWeight: FontWeight.bold,
       ),
-      headline3: GoogleFonts.cairo(
+      displaySmall: GoogleFonts.cairo(
         fontSize: 21,
         color: primaryColor,
         fontWeight: FontWeight.bold,
       ),
-      headline4: GoogleFonts.cairo(
+      headlineMedium: GoogleFonts.cairo(
         fontSize: 22,
         color: blackPrimary,
         fontWeight: FontWeight.w500,
       ),
-      headline5: GoogleFonts.cairo(
+      headlineSmall: GoogleFonts.cairo(
         fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
-      headline6: GoogleFonts.cairo(
+      titleLarge: GoogleFonts.cairo(
         fontSize: 17,
         color: blackPrimary,
         fontWeight: FontWeight.w500,
       ),
-      subtitle1: GoogleFonts.cairo(
+      titleMedium: GoogleFonts.cairo(
         fontSize: 15,
         color: greyColor,
         fontWeight: FontWeight.w400,
       ),
-      subtitle2: GoogleFonts.cairo(
+      titleSmall: GoogleFonts.cairo(
         fontSize: 12,
         color: blackPrimary,
         fontWeight: FontWeight.w500,

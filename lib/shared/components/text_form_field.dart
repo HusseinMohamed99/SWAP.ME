@@ -83,16 +83,16 @@ class DefaultTextFormField extends StatelessWidget {
         filled: true,
         suffixIcon: suffix != null
             ? IconButton(
-          padding: EdgeInsets.zero,
-          onPressed: () {
-            suffixPressed!();
-          },
-          icon: Icon(
-            suffix,
-            color: ThemeApp.greyColor,
-            size: 24,
-          ),
-        )
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  suffixPressed!();
+                },
+                icon: Icon(
+                  suffix,
+                  color: ThemeApp.greyColor,
+                  size: 24,
+                ),
+              )
             : null,
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
@@ -104,7 +104,7 @@ class DefaultTextFormField extends StatelessWidget {
         ),
         hintText: hint,
         hintStyle: GoogleFonts.cairo(
-          locale: Locale('en'),
+          locale: const Locale('en'),
           color: ThemeApp.greyColor,
           height: 1,
         ),

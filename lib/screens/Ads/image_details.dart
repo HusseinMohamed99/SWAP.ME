@@ -37,7 +37,7 @@ class ImageDetails extends StatelessWidget {
               height: 400,
               fit: BoxFit.fill,
             ),
-            DSize(height: 50, width: 0),
+            const DSize(height: 50, width: 0),
             Text(
               '1/2',
               style: GoogleFonts.cairo(
@@ -46,7 +46,7 @@ class ImageDetails extends StatelessWidget {
                 color: ThemeApp.primaryColor,
               ),
             ),
-            DSize(height: 20, width: 0),
+            const DSize(height: 20, width: 0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -61,7 +61,7 @@ class ImageDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  DSize(height: 0, width: 10),
+                  const DSize(height: 0, width: 10),
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(40),

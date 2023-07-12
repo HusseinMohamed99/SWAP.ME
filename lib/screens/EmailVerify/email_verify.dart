@@ -49,14 +49,14 @@ class EmailVerify extends StatelessWidget {
                 children: [
                   Text(
                     'قم بتأكيد بريدك الالكتروني',
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const DSize(height: 20, width: 0),
                   Text(
                     'تحقق من بريدك الالكتروني وانقر  علي الرابط\n لتنشيط  حسابك',
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle1
+                        .titleMedium
                         ?.copyWith(height: 3),
                     textAlign: TextAlign.center,
                   ),

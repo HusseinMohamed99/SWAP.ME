@@ -113,7 +113,7 @@ class CategoryItem extends StatelessWidget {
                 ),
                 Text(
                   categoryMainModel.name,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: ThemeApp.primaryColor,
                       ),
                 ),

@@ -33,7 +33,7 @@ class BoardingScreen extends StatelessWidget {
             const DSize(height: 46, width: 0),
             Text(
               'مرحبا بكم في قايضني',
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             const DSize(height: 16, width: 0),
             Text(

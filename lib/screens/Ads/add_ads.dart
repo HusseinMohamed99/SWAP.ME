@@ -172,7 +172,7 @@ class _AddAdsState extends State<AddAds> {
                             child: Center(
                               child: Text(
                                 e.name,
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                           );
@@ -220,7 +220,7 @@ class _AddAdsState extends State<AddAds> {
                             child: Center(
                               child: Text(
                                 e.name,
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                           );
@@ -307,7 +307,7 @@ class _AddAdsState extends State<AddAds> {
                             child: Center(
                               child: Text(
                                 e.name,
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                           );
@@ -355,7 +355,7 @@ class _AddAdsState extends State<AddAds> {
                             child: Center(
                               child: Text(
                                 e.name,
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                           );

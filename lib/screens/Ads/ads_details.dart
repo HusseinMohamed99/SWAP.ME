@@ -35,7 +35,7 @@ class AdsDetails extends StatelessWidget {
                         CarouselSlider(
                           items: List.generate(
                             3,
-                                (index) => Padding(
+                            (index) => Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: () {
@@ -361,8 +361,8 @@ class AdsDetails extends StatelessWidget {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(
                           Icons.camera_alt,
                           color: ThemeApp.primaryColor,

@@ -77,12 +77,12 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       Text(
                         'انشاء حساب',
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.displayMedium,
                       ),
                       const DSize(height: 15, width: 0),
                       Text(
                         'أدخل بياناتك للانضمام إلى قايضني',
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const DSize(width: 0, height: 20),
                       DefaultTextFormField(

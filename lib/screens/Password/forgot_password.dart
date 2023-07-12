@@ -51,14 +51,14 @@ class ForgotPassword extends StatelessWidget {
                   children: [
                     Text(
                       'هل نسيت كلمه السر',
-                      style: Theme.of(context).textTheme.headline2,
+                      style: Theme.of(context).textTheme.displayMedium,
                     ),
                     const DSize(height: 20, width: 0),
                     Text(
                       'سنرسل اليك  رابط عبر البريد الالكتروني لاعاده\n تعيين كلمه المرور',
                       style: Theme.of(context)
                           .textTheme
-                          .subtitle1
+                          .titleMedium
                           ?.copyWith(height: 3),
                       textAlign: TextAlign.center,
                     ),

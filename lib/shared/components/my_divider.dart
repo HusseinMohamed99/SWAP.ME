@@ -14,7 +14,7 @@ class MyDivider extends StatelessWidget {
       width: width ?? double.infinity,
       height: height ?? 2.0,
       color: color ?? Colors.grey,
-      margin: EdgeInsets.all(6),
+      margin: const EdgeInsets.all(6),
     );
   }
 }
